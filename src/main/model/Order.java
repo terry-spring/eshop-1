@@ -14,74 +14,75 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "orders")
 public class Order {
-	
+
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_id")
+	private int orderId;
+
+	@Column(name = "shipping_method_id")
+	private int shippingMethodId;
+
+	@Column(name = "employee_id")
+	private int employeeId;
+
+	@Column(name = "customer_id")
+	private int customerId;
+
+	@Column(name = "order_date")
+	private int orderDate;
+
 	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
 	private List<OrderDetail> order_detail;
-		
+	
+	public List<OrderDetail> getOrder_detail() {
+		return order_detail;
+	}
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "order_id")
-		private int orderId;
+	public void setOrder_detail(List<OrderDetail> order_detail) {
+		this.order_detail = order_detail;
+	}
 
-		@Column(name = "shipping_method_id")
-		private int shippingMethodId;
-		
-		@Column(name = "employee_id")
-		private int employeeId;
-		
-		@Column(name = "customer_id")
-		private int customerId;
-		
-		@Column(name = "order_date")
-		private int orderDate;
+	public int getOrderId() {
+		return orderId;
+	}
 
-		public List<OrderDetail> getOrder_detail() {
-			return order_detail;
-		}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
-		public void setOrder_detail(List<OrderDetail> order_detail) {
-			this.order_detail = order_detail;
-		}
+	public int getShippingMethodId() {
+		return shippingMethodId;
+	}
 
-		public int getOrderId() {
-			return orderId;
-		}
+	public void setShippingMethodId(int shippingMethodId) {
+		this.shippingMethodId = shippingMethodId;
+	}
 
-		public void setOrderId(int orderId) {
-			this.orderId = orderId;
-		}
+	public int getEmployeeId() {
+		return employeeId;
+	}
 
-		public int getShippingMethodId() {
-			return shippingMethodId;
-		}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
 
-		public void setShippingMethodId(int shippingMethodId) {
-			this.shippingMethodId = shippingMethodId;
-		}
+	public int getCustomerId() {
+		return customerId;
+	}
 
-		public int getEmployeeId() {
-			return employeeId;
-		}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 
-		public void setEmployeeId(int employeeId) {
-			this.employeeId = employeeId;
-		}
+	public int getOrderDate() {
+		return orderDate;
+	}
 
-		public int getCustomerId() {
-			return customerId;
-		}
-
-		public void setCustomerId(int customerId) {
-			this.customerId = customerId;
-		}
-
-		public int getOrderDate() {
-			return orderDate;
-		}
-
-		public void setOrderDate(int orderDate) {
-			this.orderDate = orderDate;
-		}
+	public void setOrderDate(int orderDate) {
+		this.orderDate = orderDate;
+	}
 
 }
