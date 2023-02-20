@@ -3,7 +3,7 @@
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Form page</title>
+<title>Customer Form page</title>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -16,9 +16,9 @@
 			</div>
 			
 			<div class="col-sm-8">
-				<h1>Add new customer</h1>
+				<h1>Add New Customer</h1>
 				
-				<form action="#" th:action="@{/cprocessForm}" th:object="${customer}" method="post">
+				<form action="#" th:action="@{/process-customer-form}" th:object="${customer}" method="post">
 				
 					<div class="form-group">
 						<input type="hidden" class="form-control" th:field="*{id}">
@@ -26,38 +26,38 @@
 				
 					<div class="form-group">
 						<label>CompanyName</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-						<input type="text" class="form-control" th:field="*{name}">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}"></div>
+						<input type="text" class="form-control" th:field="*{companyName}">
 					</div>
 					
 					<div class="form-group">
 						<label>ContacName</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-						<input type="text" class="form-control" th:field="*{name}">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('contacName')}" th:errors="*{contacName}"></div>
+						<input type="text" class="form-control" th:field="*{contacName}">
 					</div>
 					
 					<div class="form-group">
 						<label>CITY</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-						<input type="text" class="form-control" th:field="*{name}">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+						<input type="text" class="form-control" th:field="*{city}">
 					</div>
 					
 					<div class="form-group">
 						<label>State</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-						<input type="text" class="form-control" th:field="*{name}">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></div>
+						<input type="text" class="form-control" th:field="*{state}">
 					</div>
 					
 					<div class="form-group">
-						<label>POSTCODE</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></div>
-						<input type="text" class="form-control" th:field="*{code}">
+						<label>PostalCode</label>
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
+						<input type="text" class="form-control" th:field="*{postalCode}">
 					</div>
 					
 					<div class="form-group">
-						<label>PHONECODE</label>
-						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></div>
-						<input type="text" class="form-control" th:field="*{code}">
+						<label>PhoneNumber</label>
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+						<input type="text" class="form-control" th:field="*{phoneNumber}">
 					</div>
 					
 					<div class="form-row">

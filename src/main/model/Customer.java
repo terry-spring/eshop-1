@@ -18,32 +18,27 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank(message = "{tour.companyname}")
-	@Size(min = 5,message = "{tour.companyname.size}")
+	@NotBlank(message = "{customer.companyname}")
+	@Size(min = 5,message = "{companyname.size}")
 	@Column(name= "companyName")
 	private String companyName;
 
-		
-	
-
-	@NotBlank(message = "{tour.companyname}")
-	@Size(min = 5,message = "{tour.companyname.size}")
+	@NotBlank(message = "{customer.contacname}")
+	@Size(min = 5,message = "{customer.contacname.size}")
 	@Column(name = "contacName")
 	private String contacName;
 	
-	
 	private String city;
-	
 	
 	private String state;
 	
-	@Pattern(regexp = "[0-9]{5}",message = "{tour.postalcode.pattern}")
-	@Column(name = "postCode")
+	@Pattern(regexp = "[0-9]{5}",message = "{customer.postalcode.pattern}")
+	@Column(name = "postalCode")
 	private String postalCode;
 	
-	@Pattern(regexp = "[0-9]{10}",message = "{tour.phonecode.pattern}")
-	@Column(name = "phoneCode")
-	private String phoneCode;
+	@Pattern(regexp = "[0-9]{10}",message = "{customer.phonecode.pattern}")
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
     
 	
 	public long getId() {
@@ -61,8 +56,6 @@ public class Customer {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-
-
 
 	public String getContacName() {
 		return contacName;
@@ -96,20 +89,12 @@ public class Customer {
 		this.postalCode = postalCode;
 	}
 
-	public String getPhoneCode() {
-		return phoneCode;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhoneCode(String phoneCode) {
-		this.phoneCode = phoneCode;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 }
-	
-	
-	
-	
-	
-		
-	
-	
