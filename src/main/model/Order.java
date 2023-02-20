@@ -34,7 +34,7 @@ public class Order {
 	@Column(name = "order_date")
 	private int orderDate;
 
-	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderDetail> order_detail;
 	
 	public List<OrderDetail> getOrder_detail() {
