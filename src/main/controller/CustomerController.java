@@ -34,7 +34,7 @@ public class CustomerController {
 	@PostMapping("/process-customer-form")
 	public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			return "customeform";
+			return "customerform";
 		}
 		customerService.saveOrUpdate(customer);
 		return "redirect:show-customer";

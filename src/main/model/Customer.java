@@ -16,38 +16,37 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "customer_id")
+	private long customerId;
 	
-	@NotBlank(message = "{customer.companyname}")
-	@Size(min = 5,message = "{companyname.size}")
-	@Column(name= "companyName")
+	@NotBlank(message = "{請輸入公司名稱}")
+	@Column(name= "company_name")
 	private String companyName;
 
-	@NotBlank(message = "{customer.contacname}")
-	@Size(min = 5,message = "{customer.contacname.size}")
-	@Column(name = "contacName")
+	@NotBlank(message = "{請輸入聯絡人名稱}")
+	@Column(name = "contac_name")
 	private String contacName;
 	
 	private String city;
 	
 	private String state;
 	
-	@Pattern(regexp = "[0-9]{5}",message = "{customer.postalcode.pattern}")
-	@Column(name = "postalCode")
+	@Pattern(regexp = "[0-9]{5}",message = "{請輸入5碼郵遞區號")
+	@Column(name = "postal_code")
 	private String postalCode;
 	
-	@Pattern(regexp = "[0-9]{10}",message = "{customer.phonecode.pattern}")
-	@Column(name = "phoneNumber")
+	@Pattern(regexp = "[0-9]{10}",message = "{請輸入10碼行動電話號碼}")
+	@Column(name = "phone_number")
 	private String phoneNumber;
     
-	
-	public long getId() {
-		return id;
+	public long getCustomerId() {
+		return customerId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
+	
 
 	public String getCompanyName() {
 		return companyName;
@@ -96,5 +95,5 @@ public class Customer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 }
