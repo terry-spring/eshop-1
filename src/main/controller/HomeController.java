@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,31 +20,32 @@ public class HomeController {
 	@RequestMapping("/")
 	public String getHome() {
 		Order order = new Order();
-        order.setOrderId(1);
         OrderDetail orderDetail = new OrderDetail();
-        List<OrderDetail> orders = new ArrayList<>();
-        orderDetail.setDiscount(1);
-        orderDetail.setOrderId(1);
-        orderDetail.setProductId(1);
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        orderDetail.setDiscount(BigDecimal.valueOf(1));
+         orderDetail.setProductId(1);
         orderDetail.setQuantity(12);
-        orderDetail.setUnitPrice(123);
-        orders.add(orderDetail);
+        orderDetail.setUnitPrice(BigDecimal.valueOf(123));
+        orderDetails.add(orderDetail);
 
-        orders = new ArrayList<>();
-        orderDetail.setDiscount(2);
-        orderDetail.setOrderId(3);
-        orderDetail.setProductId(4);
+        orderDetail = new OrderDetail();
+        orderDetail.setDiscount(BigDecimal.valueOf(2));
+          orderDetail.setProductId(4);
         orderDetail.setQuantity(152);
-        orderDetail.setUnitPrice(1213);
-        orders.add(orderDetail);
+        orderDetail.setUnitPrice(BigDecimal.valueOf(1213));
+        orderDetails.add(orderDetail);
 
         order.setCustomerId(1);
         order.setEmployeeId(1);
-        order.setOrderDetail(orders);
+        order.setOrderDetail(orderDetails);
         order.setOrderDate(new Date());
         order.setShippingMethodId(1);
-
+        
+       
         orderService.saveOrUpdate(order);
+		List<Order> data = orderService.getAll();
+//        orderService.delete(1);
+        
 		return "home";
 	}
 	

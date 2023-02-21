@@ -1,5 +1,7 @@
 package main.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,10 +33,10 @@ public class OrderDetail {
 	private int quantity;
 	
 	@Column(name = "unit_price")
-	private int unitPrice;
+	private BigDecimal unitPrice;
 	
 	@Column(name = "discount")
-	private int discount;
+	private BigDecimal discount;
 
 	public Order getOrder() {
 		return order;
@@ -48,7 +50,7 @@ public class OrderDetail {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
@@ -56,7 +58,7 @@ public class OrderDetail {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
@@ -64,7 +66,7 @@ public class OrderDetail {
 		return orderDetailId;
 	}
 
-	public void setOrderDetailId(int orderDetailId) {
+	public void setOrderDetailId(long orderDetailId) {
 		this.orderDetailId = orderDetailId;
 	}
 
@@ -76,24 +78,21 @@ public class OrderDetail {
 		this.quantity = quantity;
 	}
 
-	public int getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(int unitPrice) {
+	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
-	public int getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(int discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
-
-
-
-
+	
   } 
