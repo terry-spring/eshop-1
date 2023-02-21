@@ -17,15 +17,15 @@ public class OrderDetail {
 	private Order order;
 	
 	@Column(name = "order_id")
-	private int orderId;
+	private long orderId;
 	
 	@Column(name = "product_id")
-	private int productId;
+	private long productId;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_detail_id")
-	private int orderDetailId;
+	private long orderDetailId;
 	
 	@Column(name = "quantity")
 	private int quantity;
@@ -44,7 +44,7 @@ public class OrderDetail {
 		this.order = order;
 	}
 
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
 
@@ -52,7 +52,7 @@ public class OrderDetail {
 		this.orderId = orderId;
 	}
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
@@ -60,7 +60,7 @@ public class OrderDetail {
 		this.productId = productId;
 	}
 
-	public int getOrderDetailId() {
+	public long getOrderDetailId() {
 		return orderDetailId;
 	}
 

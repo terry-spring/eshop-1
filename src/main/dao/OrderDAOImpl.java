@@ -2,43 +2,43 @@ package main.dao;
 
 import java.util.List;
 
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import main.model.Tour;
+import main.model.Order;
+
 
 @Repository
-public class TourDAOImpl implements TourDAO {
+public class OrderDAOImpl implements OrderDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Tour> getAll() {
+	public List<Order> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Tour t", Tour.class).list();
+		return session.createQuery("from Order o", Order.class).list();
 	}
 
 	@Override
-	public Tour getById(int id) {
+	public Order getById(long id) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(Tour.class, id);
+		return session.get(Order.class, id);
 	}
 
 	@Override
-	public void saveOrUpdate(Tour tour) {
+	public void saveOrUpdate(Order order) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(tour);
+		session.saveOrUpdate(order);
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(long id) {
 		Session session = sessionFactory.getCurrentSession();
-		Tour tour = getById(id);
-		session.delete(tour);
+		Order order = getById(id);
+		session.delete(order);
 	}
 
 }

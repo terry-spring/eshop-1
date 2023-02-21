@@ -1,5 +1,6 @@
 package main.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,69 +21,72 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id")
-	private int orderId;
+	private long orderId;
 
 	@Column(name = "shipping_method_id")
-	private int shippingMethodId;
+	private long shippingMethodId;
 
 	@Column(name = "employee_id")
-	private int employeeId;
+	private long employeeId;
 
 	@Column(name = "customer_id")
-	private int customerId;
+	private long customerId;
 
 	@Column(name = "order_date")
-	private int orderDate;
+	private Date orderDate;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<OrderDetail> order_detail;
-	
-	public List<OrderDetail> getOrder_detail() {
-		return order_detail;
-	}
+	private List<OrderDetail> orderDetail;
 
-	public void setOrder_detail(List<OrderDetail> order_detail) {
-		this.order_detail = order_detail;
-	}
-
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
-	public int getShippingMethodId() {
+	public long getShippingMethodId() {
 		return shippingMethodId;
 	}
 
-	public void setShippingMethodId(int shippingMethodId) {
+	public void setShippingMethodId(long shippingMethodId) {
 		this.shippingMethodId = shippingMethodId;
 	}
 
-	public int getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
 	}
 
-	public int getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(int orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+
+	
+	
+	
 }
