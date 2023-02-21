@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h1>List of available customers</h1>
+			<h1>客戶列表</h1>
 		</div>
 		
 		<div class="row">
@@ -20,36 +20,36 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Id</th>
-						<th scope="col">CompanyName</th>
-						<th scope="col">ContacName</th>
-						<th scope="col">City</th>
-						<th scope="col">State</th>
-						<th scope="col">PostalCode</th>
-						<th scope="col">PhoneNumber</th>
-						<th scope="col">Edit</th>
-						<th scope="col">Remove</th>
+						<th scope="col">客戶Id</th>
+						<th scope="col">公司名稱</th>
+						<th scope="col">聯絡人名稱</th>
+						<th scope="col">城市</th>
+						<th scope="col">地區</th>
+						<th scope="col">郵遞區號</th>
+						<th scope="col">行動電話號碼</th>
+						<th scope="col">修改</th>
+						<th scope="col">刪除</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="customer : ${customers}">
 						<td th:text="${customerStat.count}"></td>					
-						<td th:text="${customer.id}"></td>
+						<td th:text="${customer.customerId}"></td>
 						<td th:text="${customer.companyName}"></td>
 						<td th:text="${customer.contacName}"></td>
 						<td th:text="${customer.city}"></td>
 						<td th:text="${customer.state}"></td>
 						<td th:text="${customer.postalCode}"></td>
 						<td th:text="${customer.phoneNumber}"></td>
-						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.id}">Edit</a></td>
-						<td><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.id}">Delete</a></td>
+						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改</a></td>
+						<td><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}">刪除</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		
 		<div class="row" th:if="${customers.empty}">
-			<h3>No customers in the offer</h3>
+			<h3>無客戶列表</h3>
 		</div>
 		
 		<div class="row">

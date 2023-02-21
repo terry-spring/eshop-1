@@ -14,9 +14,29 @@
 		<h1>Welcome to our travel agency</h1>
 		
 		<a th:href="@{/addTour}" class="btn btn-primary">Add A New Tour</a>
-		<a th:href="@{/add-customer}" class="btn btn-primary">Add A New Customer</a>
+		<a th:href="@{/add-customer}" class="btn btn-primary">新增客戶</a>
 		<a th:href="@{/showOffer}" class="btn btn-primary">Show Our Offer</a>
-		<a th:href="@{/show-customer}" class="btn btn-primary">Show Customer</a>
+		<a th:href="@{/show-customer}" class="btn btn-primary">用戶展示</a>
+		<a sec:authorize="isAnonymous()" th:href="@{/login}" class="btn btn-secondary float-right">登入</a>
+		<a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
+		
+		<br>
+		<br>
+		<div class="border border-success">
+			<p>Spring security examples</p>
+			<div class="bg-primary text-white" sec:authorize="hasRole('ADMIN')">系統管理者</div>
+			<div class="bg-secondary text-white" sec:authorize="hasRole('EMPLOYEE')">系統維護者</div>
+			<div class="bg-warning text-black" sec:authorize="hasRole('CLIENT')">用戶</div>
+			<div class="bg-info text-white" sec:authorize="isAuthenticated()">此部分僅對經過身份驗證的用戶可見</div>
+			<div>
+				Username: <span sec:authentication="name"></span>
+			</div>
+			<div>
+				User roles: <span sec:authorize="isAuthenticated()">
+								<span sec:authentication="principal.authorities"></span>
+							</span>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

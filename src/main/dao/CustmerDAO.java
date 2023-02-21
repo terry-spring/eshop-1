@@ -8,10 +8,10 @@ public interface CustmerDAO {
 
 	public List<Customer> getAll();
 	
-	public Customer getById(long id);
+	public Customer getById(long customerId);
 	
 	public void saveOrUpdate(Customer customer);
 	
-	public void delete(long id);
+	public void delete(long customerId);
 	
 }
