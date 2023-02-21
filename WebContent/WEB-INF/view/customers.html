@@ -41,8 +41,8 @@
 						<td th:text="${customer.state}"></td>
 						<td th:text="${customer.postalCode}"></td>
 						<td th:text="${customer.phoneNumber}"></td>
-						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer_id}">修改</a></td>
-						<td><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer_id}">刪除</a></td>
+						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改</a></td>
+						<td><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}">刪除</a></td>
 					</tr>
 				</tbody>
 			</table>
