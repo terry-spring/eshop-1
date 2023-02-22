@@ -1,5 +1,7 @@
 package main.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,24 +19,24 @@ public class OrderDetail {
 	private Order order;
 	
 	@Column(name = "order_id")
-	private int orderId;
+	private long orderId;
 	
 	@Column(name = "product_id")
-	private int productId;
+	private long productId;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_detail_id")
-	private int orderDetailId;
+	private long orderDetailId;
 	
 	@Column(name = "quantity")
 	private int quantity;
 	
 	@Column(name = "unit_price")
-	private int unitPrice;
+	private BigDecimal unitPrice;
 	
 	@Column(name = "discount")
-	private int discount;
+	private BigDecimal discount;
 
 	public Order getOrder() {
 		return order;
@@ -44,27 +46,27 @@ public class OrderDetail {
 		this.order = order;
 	}
 
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
-	public int getOrderDetailId() {
+	public long getOrderDetailId() {
 		return orderDetailId;
 	}
 
-	public void setOrderDetailId(int orderDetailId) {
+	public void setOrderDetailId(long orderDetailId) {
 		this.orderDetailId = orderDetailId;
 	}
 
@@ -76,24 +78,21 @@ public class OrderDetail {
 		this.quantity = quantity;
 	}
 
-	public int getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(int unitPrice) {
+	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
-	public int getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(int discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
-
-
-
-
+	
   } 
