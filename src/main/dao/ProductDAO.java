@@ -8,10 +8,10 @@ public interface ProductDAO {
 
 	public List<Product> getAll();
 	
-	public Product getById(int id);
+	public Product getById(long productId);
 	
 	public void saveOrUpdate(Product product);
 	
-	public void delete(int id);
+	public void delete(long productId);
 	
 }

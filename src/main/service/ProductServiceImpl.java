@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product getById(int productId) {
+	public Product getById(long productId) {
 		return prouctDao.getById(productId);
 	}
 
@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void delete(int productId) {
+	public void delete(long productId) {
 		prouctDao.delete(productId);
 	}
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import main.model.Product;
+import main.model.Tour;
+import main.model.TourDetails;
 import main.service.ProductService;
 
 @Controller
@@ -47,7 +49,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/delete-product/{productId}")
-	public String deleteProducts(@PathVariable int productId) {
+	public String deleteProducts(@PathVariable long productId) {
 		Product product = productService.getById(productId);
 		if(product != null) {
 			productService.delete(productId);
@@ -56,7 +58,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/edit-product/{productId}")
-	public String editProducts(@PathVariable int productId, Model model) {
+	public String editProducts(@PathVariable long productId, Model model) {
 		Product product = productService.getById(productId);
 		if(product != null) {
 			model.addAttribute("product", product);

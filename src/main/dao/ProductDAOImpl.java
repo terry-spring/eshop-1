@@ -18,31 +18,27 @@ public class ProductDAOImpl implements ProductDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
 	public List<Product> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Product", Product.class).list();
+		return session.createQuery("from Product p", Product.class).list();
 	}
 
 	@Override
-	@Transactional
-	public Product getById(int id) {
+	public Product getById(long productId) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(Product.class, id);
+		return session.get(Product.class, productId);
 	}
 
 	@Override
-	@Transactional
 	public void saveOrUpdate(Product product) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(product);
 	}
 
 	@Override
-	@Transactional
-	public void delete(int id) {
+	public void delete(long productId) {
 		Session session = sessionFactory.getCurrentSession();
-		Product product = getById(id);
+		Product product = getById(productId);
 		session.delete(product);
 	}
 }

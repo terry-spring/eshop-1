@@ -27,10 +27,9 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 	@Override
 	protected Filter[] getServletFilters() {
 		final CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-		encodingFilter.setEncoding(CHARACTER_ENCODING);
+		encodingFilter.setEncoding("UTF-8");
 		encodingFilter.setForceEncoding(true);
 		return new Filter[] { encodingFilter };
-		
 	}
 
 }
