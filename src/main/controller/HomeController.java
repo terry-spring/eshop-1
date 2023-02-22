@@ -2,23 +2,19 @@ package main.controller;
 
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
 import org.springframework.ui.Model;
-=======
 import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> origin/richard
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import main.model.Tour;
 
 @Controller
 public class HomeController {
 	@RequestMapping("/")
-<<<<<<< HEAD
+
 	public String getHome(Model model) {
 		model.addAttribute("tour",new Tour());
 		return "index";
-		
+	}
 /*	public String getHome() {
 		Order order = new Order();
         OrderDetail orderDetail = new OrderDetail();
@@ -48,13 +44,12 @@ public class HomeController {
 //        orderService.delete(1);
         
 		return "home";*/
-=======
-	public String getHome() {
+	    public String getHome() {
 		
 		System.out.println("Password admin"+ PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("admin"));
 		System.out.println("Password employee"+ PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("employee"));
 		System.out.println("Password client"+ PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("client"));
 		return "index";
->>>>>>> origin/richard
+
 	}
 }

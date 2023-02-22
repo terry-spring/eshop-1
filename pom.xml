@@ -94,9 +94,7 @@
 		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		<version>3.0.4.RELEASE</version>
 	</dependency>
-<<<<<<< HEAD
-=======
-	<dependency>
+    <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-commons</artifactId>
         <version>2.2.7.RELEASE</version>
@@ -108,6 +106,5 @@
         <version>2.2.7.RELEASE</version>
     </dependency>
 	
->>>>>>> origin/richard
   </dependencies>
 </project>
