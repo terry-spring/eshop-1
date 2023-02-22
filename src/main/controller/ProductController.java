@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import main.model.Cart;
 import main.model.Product;
 import main.service.ProductService;
 
@@ -26,6 +27,7 @@ public class ProductController {
 	@GetMapping("/add-product")
 	public String showForm(Model model) {
 		model.addAttribute("product", new Product());
+		model.addAttribute("cart", new Cart());
 		return "product-form";
 	}
 	

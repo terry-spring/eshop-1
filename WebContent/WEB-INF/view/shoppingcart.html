@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>產品</title>
+<title>購物車</title>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -27,23 +27,19 @@
     </nav> -->
 	<div class="container">
 		<div class="row">
-			<h1>產品列表</h1>
+			<h1>商品</h1>
 		</div>
 		
 		<div class="row">
 			<table class="table table-hover" th:if="${!products.empty}">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">產品編號</th>
-						<th scope="col">品牌</th>
-						<th scope="col">產品名稱</th>
 						<th scope="col">圖片</th>
-						<th scope="col">產品資訊</th>
-						<th scope="col">價錢</th>
+						<th scope="col">產品名稱</th>
+						<th scope="col">品牌</th>
+						<th scope="col">單價</th>
 						<th scope="col">數量</th>
-						<th scope="col">加入購物車</th>
-						<th scope="col">編輯</th>
+						<th scope="col">總計</th>
 						<th scope="col">刪除</th>
 					</tr>
 				</thead>
@@ -56,8 +52,6 @@
 						<td th:text="${product.productImage}"></td>
 						<td th:text="${product.productDescription}"></td>
 						<td th:text="${product.productPrice}"></td>
-						<td><input type="number" class="form-control" step="any" th:value="${cart.quantity}"></td>
-						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
 						<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
 						<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
 					</tr>
@@ -69,9 +63,15 @@
 			<h3>暫無產品</h3>
 		</div>
 		
+<!-- 		<div class="row">
+			<a th:href="@{/add-product}" class="btn btn-add">新增產品</a>
+		<div class="row">
+			<a th:href="@{/}" class="btn btn-warning">返回</a>
+		</div>
+		 -->
 		<div class="form-row">
 			<div class="row">
-				<a th:href="@{/add-product}" class="btn btn-info">新增產品</a>
+				<a th:href="@{/add-product}" class="btn btn-warning">新增產品</a>
 				<a th:href="@{/}" class="btn btn-warning">返回</a>
 			</div>
 		</div>
