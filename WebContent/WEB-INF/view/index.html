@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,7 +28,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
+                        <a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">ShoopingCart</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Order</a></li>
                     </ul>
