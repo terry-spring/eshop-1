@@ -21,14 +21,14 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
 	}
-
+	
 	@Override
 	protected Filter[] getServletFilters() {
-
-		final CharacterEncodingFilter encodingFilter =new CharacterEncodingFilter();
+		final CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
 		encodingFilter.setEncoding("UTF-8");
 		encodingFilter.setForceEncoding(true);
-		return new Filter[] {encodingFilter};
+		return new Filter[]{ encodingFilter };
 	}
+
 }	
 

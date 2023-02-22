@@ -1,24 +1,19 @@
 package main.controller;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import main.model.Order;
-import main.model.OrderDetail;
-import main.service.OrderService;
+import main.model.Tour;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private OrderService orderService;
 	@RequestMapping("/")
-	public String getHome() {
+	public String getHome(Model model) {
+		model.addAttribute("tour",new Tour());
+		return "index";
+		
+/*	public String getHome() {
 		Order order = new Order();
         OrderDetail orderDetail = new OrderDetail();
         List<OrderDetail> orderDetails = new ArrayList<>();
@@ -46,7 +41,7 @@ public class HomeController {
 		List<Order> data = orderService.getAll();
 //        orderService.delete(1);
         
-		return "home";
+		return "home";*/
 	}
 	
 }
