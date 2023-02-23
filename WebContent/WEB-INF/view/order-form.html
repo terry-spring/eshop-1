@@ -45,47 +45,56 @@
             <section class="py-5">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
-						<h1>所有訂單</h1>
-					</div>
-					
-					<div class="row gx-5 justify-content-center">
-						<table class="table table-hover" th:if="${!orders.empty}">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">訂單日期</th>
-									<th scope="col">客戶編號</th>
-									<th scope="col">付款方式</th>
-									<th scope="col">總額</th>
-									<th scope="col">編輯內容</th>
-									<th scope="col">編輯詳細內容</th>
-									<th scope="col">刪除訂單</th>
-									<th scope="col">詳細內容</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="order : ${orders}">
-									<td th:text="${orderStat.count}"></td>
-									<td th:text="${order.orderDate}"></td>
-									<td th:text="${order.customerId}"></td>
-									<td th:text="${order.payment}"></td>
-									<td th:text="${order.amount}"></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					
-					<div class="row gx-5 justify-content-center" th:if="${orders.empty}">
-						<h3>沒有任何訂單</h3>
-					</div>
-					
-					<div class="row gx-5 justify-content-center">
-						<a th:href="@{/}" class="btn btn-warning">返回</a>
-					</div>
+                        <div class="col-sm">
+                        </div>
+
+                        <div class="col-sm-8">
+							<h1>新增訂單</h1>
+							
+							<form action="#" th:action="@{/order-process-form}" th:object="${order}" method="post">
+								<div class="form-group">
+									<input type="hidden" class="form-control" th:field="*{orderId}">
+								</div>
+								
+								<div class="form-group">
+									<label>訂單日期</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></div>
+									<input type="date" class="form-control" th:field="*{orderDate}">
+								</div>
+								
+								<div class="form-group">
+									<label>客戶編號</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></div>
+									<input type="text" class="form-control" th:field="*{customerId}">
+									<!-- <small class="form-text text-muted">Expected format: LL-DDL where L-letter, D-digit</small> -->
+								</div>
+
+                                <div class="form-group">
+                                    <label>付款方式</label>
+                                    <select name="payment" class="form-control">
+                                        <option th:each="payment : ${T(main.model.Order.Payment).values()}"
+                                                th:value="${payment}" th:text="${payment}"></option>
+                                    </select>
+                                </div>
+								
+								<div class="form-group">
+									<label>總額</label>
+									<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
+									<input type="number" class="form-control" th:field="*{amount}">
+								</div>
+								
+								<div class="row gx-5 justify-content-center">
+									<div class="col">
+										<input class="btn btn-success float-start" type="submit" value="新增">
+                                        <a class="btn btn-warning float-end" th:href="@{/}">返回</a>
+									</div>
+								</div>
+							</form>
+						</div>
+
+                        <div class="col-sm">
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -106,3 +115,4 @@
         </footer>
 	</body>
 </html>
+

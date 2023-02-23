@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
-=======
+
 <html lang="zh-Hant"
       xmlns:th="http://www.thymeleaf.org">
->>>>>>> origin/richard
     <head>
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -33,18 +29,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-                        <li class="nav-item"><a class="nav-link" href="#about">登入</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">購物車</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">訂單</a></li>
-=======
                         <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
                         <a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
                         <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">ShoopingCart</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Order</a></li>
->>>>>>> origin/richard
                     </ul>
                 </div>
             </div>

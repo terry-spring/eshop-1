@@ -20,52 +20,53 @@ import main.service.OrderService;
 @Controller
 public class OrderController {
 	
+	@Autowired
+	private OrderService orderService;
+	
 	@RequestMapping("/order")
 	public String getOrder() {
 		return "orders";
 	}
-	@Autowired
-	private OrderService orderService;
-
-	@GetMapping("/addOrder")
-	public String showForm(Model model) {
-		model.addAttribute("order", new Order());
-		return "order-form";
-	}
 	
-	@PostMapping("/processOrderForm")
-	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			return "order-form";
-		}
-		orderService.saveOrUpdate(order);
-		return "redirect:showOrder";
-	}
-	
-	@GetMapping("/showOrder")
+	@GetMapping("/show-order")
 	public String getOrders(Model model) {
 		List<Order> orders = orderService.getAll();
 		model.addAttribute("orders", orders);
 		return "orders";
 	}
 	
-	@GetMapping("/deleteOrder/{id}")
+	@GetMapping("/add-order")
+	public String showForm(Model model) {
+		model.addAttribute("order", new Order());
+		return "order-form";
+	}
+	
+	@PostMapping("/process-order-form")
+	public String showOrderData(@Valid @ModelAttribute Order order, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "order-form";
+		}
+		orderService.saveOrUpdate(order);
+		return "redirect:show-order";
+	}
+	
+	@GetMapping("/delete-order/{id}")
 	public String deleteOrder(@PathVariable long id) {
 		Order order = orderService.getById(id);
 		if(order != null) {
 			orderService.delete(id);
 		}
-		return "redirect:/showOrder";
+		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/editOrder/{id}")
+	@GetMapping("/edit-order/{id}")
 	public String editOrder(@PathVariable int id, Model model) {
 		Order order = orderService.getById(id);
 		if(order != null) {
 			model.addAttribute("order", order);
 			return "order-form";
 		}
-		return "redirect:/showOrder";
+		return "redirect:/show-order";
 	}
 	
 }
