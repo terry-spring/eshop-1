@@ -1,15 +1,10 @@
 package main.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,11 +24,11 @@ public class User {
 	
 	private boolean enabled;
 	
-	@ManyToMany
-	@JoinTable(name = "tour2user",
-			   joinColumns = @JoinColumn(name = "user_id"),
-			   inverseJoinColumns = @JoinColumn(name = "tour_id"))
-	private List<Tour> tours;
+//	@ManyToMany
+//	@JoinTable(name = "tour2user",
+//			   joinColumns = @JoinColumn(name = "user_id"),
+//			   inverseJoinColumns = @JoinColumn(name = "tour_id"))
+//	private List<Tour> tours;
 
 	public int getId() {
 		return id;
@@ -67,12 +62,12 @@ public class User {
 		this.enabled = enabled;
 	}
 	
-	public List<Tour> getTours() {
-		return tours;
-	}
-
-	public void setTours(List<Tour> tours) {
-		this.tours = tours;
-	}
-	
+//	public List<Tour> getTours() {
+//		return tours;
+//	}
+//
+//	public void setTours(List<Tour> tours) {
+//		this.tours = tours;
+//	}
+//	
 }
