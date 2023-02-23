@@ -21,9 +21,9 @@ public class Product {
 	@Column(name = "product_id")
 	private long productId;
 	
-	@NotNull(message = "{product.brandId.notnull}")
-	@Column(name = "brand_id")
-	private int brandId;
+	@NotNull(message = "{product.brand.notnull}")
+	@Column(name = "brand")
+	private String brand;
 	
 	@NotBlank(message = "{product.name.notblank}")
 	@Column(name = "product_name")
@@ -35,7 +35,8 @@ public class Product {
 	@Column(name = "product_description")
 	private String productDescription;
 
-	@DecimalMin(value="1", message = "{product.price.min}")
+	@NotNull(message = "{product.price.notnull}")
+	@DecimalMin(value="0", message = "{product.price.min}")
 	@Column(name = "product_price")
 	private BigDecimal productPrice;
 	
@@ -47,12 +48,12 @@ public class Product {
 		this.productId = productId;
 	}
 
-	public int getBrandId() {
-		return brandId;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setBrandId(int brandId) {
-		this.brandId = brandId;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 	public String getName() {
