@@ -35,7 +35,8 @@ public class Product {
 	@Column(name = "product_description")
 	private String productDescription;
 
-	@DecimalMin(value="1", message = "{product.price.min}")
+	@NotNull(message = "{product.price.notnull}")
+	@DecimalMin(value="0", message = "{product.price.min}")
 	@Column(name = "product_price")
 	private BigDecimal productPrice;
 	

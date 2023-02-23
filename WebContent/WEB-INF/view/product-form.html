@@ -9,22 +9,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">WORKSHOP1</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">購物車</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup">訂單</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
 	<div class="container">
 		<div class="row">
 			<div class="col-sm">
@@ -66,7 +50,7 @@
 					<div class="form-group">
 						<label>價錢</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}"></div>
-						<input type="number" class="form-control" step="any" th:field="*{productPrice}">
+						<input type="number" class="form-control" step="any" min="0" th:field="*{productPrice}">
 					</div>
 					
 					<div class="form-row">

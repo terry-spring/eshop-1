@@ -27,7 +27,6 @@ public class ProductController {
 	@GetMapping("/add-product")
 	public String showForm(Model model) {
 		model.addAttribute("product", new Product());
-		model.addAttribute("cart", new Cart());
 		return "product-form";
 	}
 	
@@ -37,10 +36,10 @@ public class ProductController {
 			return "product-form";
 		}
 		productService.saveOrUpdate(product);
-		return "redirect:show-product-offer";
+		return "redirect:show-products";
 	}
 	
-	@GetMapping("/show-product-offer")
+	@GetMapping("/show-products")
 	public String getProducts(Model model) {
 		List<Product> products = productService.getAll();
 		model.addAttribute("products", products);
@@ -53,7 +52,7 @@ public class ProductController {
 		if(product != null) {
 			productService.delete(productId);
 		}
-		return "redirect:/show-product-offer";
+		return "redirect:/show-products";
 	}
 	
 	@GetMapping("/edit-product/{productId}")
@@ -63,6 +62,6 @@ public class ProductController {
 			model.addAttribute("product", product);
 			return "product-form";
 		}
-		return "redirect:/show-product-offer";
+		return "redirect:/show-products";
 	}
 }

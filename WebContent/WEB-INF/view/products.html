@@ -9,25 +9,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-<!--     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">WORKSHOP1</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">購物車</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup">訂單</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
+    <script type="text/javascript">
+	function disp_confirm()
+	  {
+	  var r=confirm("是否刪除商品？")
+	  if (r==true)
+	    {
+	    document.write("已刪除商品")
+	    }
+	  else
+	    {
+	    document.write("已取消刪除商品")
+	    r==false
+	    }
+	  }
+	</script>
+	
 	<div class="container">
 		<div class="row">
-			<h1>產品列表</h1>
+			<h1>產品</h1>
 		</div>
 		
 		<div class="row">
@@ -56,7 +56,7 @@
 						<td th:text="${product.productImage}"></td>
 						<td th:text="${product.productDescription}"></td>
 						<td th:text="${product.productPrice}"></td>
-						<td><input type="number" class="form-control" step="any" th:value="${cart.quantity}"></td>
+						<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
 						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
 						<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
 						<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
