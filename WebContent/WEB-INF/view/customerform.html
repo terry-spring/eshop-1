@@ -21,48 +21,48 @@
 				<form action="#" th:action="@{/process-customer-form}" th:object="${customer}" method="post">
 				
 					<div class="form-group">
-						<input type="hidden" class="form-control" th:field="*{id}">
+						<input type="hidden" class="form-control" th:field="*{customerId}">
 					</div>
 				
 					<div class="form-group">
-						<label>CompanyName</label>
+						<label>公司名稱</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}"></div>
 						<input type="text" class="form-control" th:field="*{companyName}">
 					</div>
 					
 					<div class="form-group">
-						<label>ContacName</label>
+						<label>聯絡人名稱</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('contacName')}" th:errors="*{contacName}"></div>
 						<input type="text" class="form-control" th:field="*{contacName}">
 					</div>
 					
 					<div class="form-group">
-						<label>CITY</label>
+						<label>城市</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
 						<input type="text" class="form-control" th:field="*{city}">
 					</div>
 					
 					<div class="form-group">
-						<label>State</label>
+						<label>地區</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></div>
 						<input type="text" class="form-control" th:field="*{state}">
 					</div>
 					
 					<div class="form-group">
-						<label>PostalCode</label>
+						<label>郵遞區號</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
 						<input type="text" class="form-control" th:field="*{postalCode}">
 					</div>
 					
 					<div class="form-group">
-						<label>PhoneNumber</label>
+						<label>行動電話號碼</label>
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
 						<input type="text" class="form-control" th:field="*{phoneNumber}">
 					</div>
 					
 					<div class="form-row">
 						<div class="col">
-							<input class="btn btn-success" type="submit" value="Submit">
+							<input class="btn btn-success" type="submit" value="輸入">
 						</div>
 						<div class="col">
 							<a th:href="@{/}" class="btn btn-warning float-right">Back</a>
