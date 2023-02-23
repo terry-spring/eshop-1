@@ -16,7 +16,7 @@
 		</div>
 		
 		<div class="row">
-			<table class="table table-hover" th:if="${!tours.empty}">
+			<table class="table table-hover" th:if="${!orders.empty}">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -42,20 +42,20 @@
 						<td th:text="${#dates.format(order.date, 'yyyy-MM-dd')}"></td>
 						<td th:text="${order.duration}"></td>
 						<td th:text="${order.allInclusive}"></td>
-						<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${tour.id}">Edit</a></td>
-						<td><a class="btn btn-primary" th:href="@{/editOrderDetails/} + ${tour.id}">Edit details</a></td>
-						<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${tour.id}">Delete</a></td>
-						<td><a class="btn btn-success" th:href="@{/showOrderDetails/} + ${tour.id}">Details</a></td>
+						<td><a class="btn btn-primary" th:href="@{/editOrder/} + ${order.id}">Edit</a></td>
+						<td><a class="btn btn-primary" th:href="@{/editOrderDetails/} + ${order.id}">Edit details</a></td>
+						<td><a class="btn btn-danger" th:href="@{/deleteOrder/} + ${order.id}">Delete</a></td>
+						<td><a class="btn btn-success" th:href="@{/showOrderDetails/} + ${order.id}">Details</a></td>
 						<td>
-						    <a class="btn btn-success" th:href="@{/addUserToTour/{id}/{userId}(id=${tour.id}, userId=1)}">1</a>
-						    <a class="btn btn-success" th:href="@{/addUserToTour/{id}/{userId}(id=${tour.id}, userId=2)}">2</a>
+						    <a class="btn btn-success" th:href="@{/addUserToOrder/{id}/{userId}(id=${order.id}, userId=1)}">1</a>
+						    <a class="btn btn-success" th:href="@{/addUserToOrder/{id}/{userId}(id=${order.id}, userId=2)}">2</a>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		
-		<div class="row" th:if="${tours.empty}">
-			<h3>No tours in the offer</h3>
+		<div class="row" th:if="${orders.empty}">
+			<h3>No orders in the offer</h3>
 		</div>
 		
 		<div class="row">
