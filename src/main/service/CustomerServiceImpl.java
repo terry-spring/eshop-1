@@ -12,41 +12,29 @@ import main.repository.CustomerRepository;
 
 @Service
 @Transactional
-public class CustomerServiceImpl implements CustomerService{
-
+public class CustomerServiceImpl implements CustomerService {
+	
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Override
 	public List<Customer> getAll() {
 		return customerRepository.findAll();
 	}
 
 	@Override
-	public Customer getById(long CustomerId) {
-		return customerRepository.getOne(CustomerId);
+	public Customer getById(long customerId) {
+	    return	customerRepository.findById(customerId).orElse(null);
 	}
 
 	@Override
-	public void saveOrUpdate(Customer Customer) {
-		customerRepository.saveAndFlush(Customer);
+	public void saveOrUpdate(Customer customer) {
+		customerRepository.saveAndFlush(customer);
 	}
 
 	@Override
-	public void delete(long CustomerId) {
-		customerRepository.deleteById(CustomerId);
+	public void delete(long customerId) {
+		customerRepository.deleteById(customerId);
 	}
-	
-//	@Override
-//	public void addUserToCustomer(long customerId, long userId) {
-//		Customer customer = getById(id);
-//		if(customer.ge() == null) {
-//			tour.setUsers(new ArrayList<>());
-//		}
-//		User user = userRepository.getOne(userId);
-//		if(user != null) {
-//			tour.getUsers().add(user);
-//			saveOrUpdate(tour);
-//		}
-//	}
+
 }
