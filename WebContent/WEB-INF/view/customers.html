@@ -19,7 +19,6 @@
 			<table class="table table-hover" th:if="${!customers.empty}">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">客戶Id</th>
 						<th scope="col">公司名稱</th>
 						<th scope="col">聯絡人名稱</th>
@@ -32,8 +31,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="customer : ${customers}">
-						<td th:text="${customerStat.count}"></td>					
+					    <tr th:each="customer : ${customers}">
 						<td th:text="${customer.customerId}"></td>
 						<td th:text="${customer.companyName}"></td>
 						<td th:text="${customer.contacName}"></td>
@@ -41,8 +39,10 @@
 						<td th:text="${customer.state}"></td>
 						<td th:text="${customer.postalCode}"></td>
 						<td th:text="${customer.phoneNumber}"></td>
-						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改</a></td>
-						<td><a class="btn btn-danger" th:href="@{/delete-customer/} + ${customer.customerId}">刪除</a></td>
+						<td><a class="btn btn-primary" th:href="@{/edit-customer/} + ${customer.customerId}">修改資料</a></td>
+						<td><a class="btn btn-danger" th:data-confirm-delete="是否刪除客戶資料？"
+                               onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"
+                               th:href="@{/delete-customer/} + ${customer.customerId}">刪除資料</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -53,7 +53,7 @@
 		</div>
 		
 		<div class="row">
-			<a th:href="@{/}" class="btn btn-warning">Back</a>
+			<a th:href="@{/}" class="btn btn-warning">回上一頁</a>
 		</div>
 	</div>
 </body>
