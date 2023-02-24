@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -42,7 +43,7 @@ public class CustomerController {
 	
 	@GetMapping("/show-customer")
 	public String getCustomers(Model model) {
-		List<Customer> customers = customerService.getAll();
+		List<Customer> customers = customerService.findAll();
 		model.addAttribute("customers", customers);
 		return "customers";
 	}
@@ -66,9 +67,9 @@ public class CustomerController {
 		return "redirect:/show-customer";
 	}
 	
-//	@GetMapping("/addUserToTour/{id}/{userId}")
-//	public String addUserToTour(@PathVariable int id, @PathVariable int userId) {
-//		customerService.addUserToCustomer(id, userId);
-//		return "redirect:/show-customer";
-//	}
+	@GetMapping("/add-user-to-customer/{customerId}")
+	public String addUserToCustomer(@PathVariable long customerId, Principal principal) {
+		customerService.addUserToCustomer(customerId, principal.getName());
+		return "redirect:/show-customer";
+	}
 }

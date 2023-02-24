@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.model.Customer;
+import main.model.User;
 import main.repository.CustomerRepository;
+import main.repository.UserRepository;
 
 @Service
 @Transactional
@@ -16,9 +18,12 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
-	public List<Customer> getAll() {
+	public List<Customer> findAll() {
 		return customerRepository.findAll();
 	}
 
@@ -37,4 +42,14 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.deleteById(customerId);
 	}
 
+	@Override
+	public void addUserToCustomer(long customerId, String login) {
+		Customer customer =getById(customerId);
+		if(customer.getUser() !=null) {
+			User user = userRepository.findByLogin(login);
+			customer.setUser(user);
+			customerRepository.save(customer);
+		}
+	}
+	
 }
