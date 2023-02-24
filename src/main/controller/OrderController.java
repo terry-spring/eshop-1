@@ -57,7 +57,7 @@ public class OrderController {
 		return "redirect:show-order";
 	}
 	@GetMapping("/process-order-form/{cartId}")
-	public String showOrderData(@PathVariable long cartId) {
+	public String showOrderData(@PathVariable long cartId, Model model) {
 		Cart cart = cartService.getById(cartId);
 		List<CartDetail> cartDetails = cart.getCartDetail();
 		BigDecimal total = BigDecimal.valueOf(0);
@@ -65,13 +65,15 @@ public class OrderController {
 			total = total.add(cartDetail.getUnitPrice().multiply(BigDecimal.valueOf(cartDetail.getQuantity())));
 		}
 
-
+		model.addAttribute("total", total);
+		model.addAttribute("cartDetails", cartDetails);
 //orderService.save(order)
 //		cartservice.delete(cart) 
-		return "redirect:show-order-result";
+		return "show-order-result";
 	}
 	
 	
+
 	@GetMapping("/delete-order/{id}")
 	public String deleteOrder(@PathVariable long id) {
 		Order order = orderService.getById(id);

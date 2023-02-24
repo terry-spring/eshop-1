@@ -9,29 +9,32 @@
 	<h1>List of available tours</h1>
 	
 	<div>
-		<table th:if="${!tours.empty}">
+	<div class="row">
+		<h1 th:text="${total} + ' details'"></h1>
+		</div>
+		<table th:if="${!cartDetails.empty}">
 			<tr>
 									<td>#</td>
-									<td>訂單日期</td>
-									<td>客戶編號</td>
-									<td>付款方式</td>
+									<td>編號</td>
+									<td>折扣</td>
+									<td>產品編號</td>
+									<td>數量</td>
 									<td>總額</td>
-									<td>編輯內容</td>
-									<td>編輯詳細內容</td>
-									<td>刪除訂單</td>
-									<td>詳細內容</td>
+									<td>單價</td>
+									
+
 			</tr>
-			<tr th:each="order : ${orders}">
-									<td th:text="${orderStat.count}"></td>
-									<td th:text="${order.orderDate}"></td>
-									<td th:text="${order.customerId}"></td>
-									<td th:text="${order.payment}"></td>
-									<td th:text="${order.amount}"></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
-									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
-								</tr>
+			<tr th:each="cartDetail : ${cartDetails}">
+			
+				<td th:text="${cartDetail.cartDetailId}"></td>
+				<td th:text="${cartDetail.cartId}"></td>
+				<td th:text="${cartDetail.discount}"></td>
+				<td th:text="${cartDetail.productId}"></td>
+				<td th:text="${cartDetail.quantity}"></td>
+				<td th:text="${cartDetail.totalPrice}"></td>
+				<td th:text="${cartDetail.unitPrice}"></td>
+
+			</tr>
 		</table>
 		<span th:if="${tours.empty}">No tours in the offer</span>
 	</div>
