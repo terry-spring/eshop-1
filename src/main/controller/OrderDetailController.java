@@ -27,7 +27,7 @@ public class OrderDetailController {
 		return "redirect:/showOffer";
 	}
 	
-	@GetMapping("/editOrderDetail/{tourId}")
+	@GetMapping("/editOrderDetail/{orderId}")
 	public String editOrderDetail(@PathVariable long orderId, Model model) {
 		OrderDetail order = orderDetailService.getById(orderId);
 		if(order != null) {
