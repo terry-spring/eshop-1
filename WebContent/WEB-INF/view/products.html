@@ -9,7 +9,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="none"​​>
 	function disp_confirm()
 	  {
 	  var r=confirm("是否刪除商品？")
@@ -24,7 +24,7 @@
 	    }
 	  }
 	</script>
-	
+
 	<div class="container">
 		<div class="row">
 			<h1>產品</h1>
@@ -49,9 +49,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="product : ${products}">
-						<td th:text="${productStat.count}"></td>					
+						<td th:text="${productStat.count}" ></td>					
 						<td th:text="${product.productId}"></td>
-						<td th:text="${product.brand}"></td>
+						<td th:text="${product.brand}" ></td>
 						<td th:text="${product.name}"></td>
 						<td th:text="${product.productImage}"></td>
 						<td th:text="${product.productDescription}"></td>
@@ -59,7 +59,10 @@
 						<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
 						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
 						<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
-						<td><a class="btn btn-danger" th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
+						<td><a class="btn btn-danger" 
+							   th:data-confirm-delete="是否刪除商品？"
+							   onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"
+							   th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
 					</tr>
 				</tbody>
 			</table>

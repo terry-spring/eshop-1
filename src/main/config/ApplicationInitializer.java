@@ -30,6 +30,5 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 		encodingFilter.setForceEncoding(true);
 		return new Filter[]{ encodingFilter };
 	}
-
 }	
 

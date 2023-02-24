@@ -14,4 +14,8 @@ public interface CartService {
 	
 	public void delete(long cartId);
 	
+	public Cart getByCustomerId(long customerId);
+	
+	public void addProduct2cart(long productId, int quantity);
+	
 }
