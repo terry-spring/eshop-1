@@ -35,10 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.jdbcAuthentication().dataSource(dataSource)
-			.usersByUsernameQuery("select login, password, enabled from user where login=?")
-			.authoritiesByUsernameQuery("select login, role from role where login=?");
-		}
+	    .inMemoryAuthentication()
+	    .withUser("ming").password(passwordEncoder().encode("005529")).roles("ADMIN");
+	
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setForceEncoding(true);
         
 		http.authorizeRequests()
-			.antMatchers("/", "/login")
+			.antMatchers("/**", "/login", "/process-order-form")
 				.permitAll()
 			.antMatchers("/addTour","/showOffer","/add-customer","/show-customer")
 				.hasAnyRole("ADMIN", "EMPLOYEE")

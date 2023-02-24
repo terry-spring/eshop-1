@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Tours page</title>
+</head>
+<body>
+	<h1>List of available tours</h1>
+	
+	<div>
+		<table th:if="${!tours.empty}">
+			<tr>
+									<td>#</td>
+									<td>訂單日期</td>
+									<td>客戶編號</td>
+									<td>付款方式</td>
+									<td>總額</td>
+									<td>編輯內容</td>
+									<td>編輯詳細內容</td>
+									<td>刪除訂單</td>
+									<td>詳細內容</td>
+			</tr>
+			<tr th:each="order : ${orders}">
+									<td th:text="${orderStat.count}"></td>
+									<td th:text="${order.orderDate}"></td>
+									<td th:text="${order.customerId}"></td>
+									<td th:text="${order.payment}"></td>
+									<td th:text="${order.amount}"></td>
+									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
+									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
+									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
+									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
+								</tr>
+		</table>
+		<span th:if="${tours.empty}">No tours in the offer</span>
+	</div>
+	
+	<p>
+		<a th:href="@{/}">Back</a>
+	</p>
+
+</body>
+</html>
