@@ -31,16 +31,6 @@ public class CartController {
 	@GetMapping("/add-to-cart/{productId}")
 	public String addToCart(@PathVariable long productId, Model model) {
 		
-//		Product product = productService.getById(productId);
-//		if(product != null) {
-//			model.addAttribute("product", product);
-//			model.addAttribute("cart",new Cart());
-//			cartService.addProduct2cart(productId, 2);
-//			return "cart";
-//		}
-//		return "redirect:/show-products";
-//	}
-
 		 long customerId = 1L;
 	        //商業邏輯
 	        Product product = productService.getById(productId);
@@ -53,7 +43,7 @@ public class CartController {
 	        cartDetail.setDiscount(BigDecimal.valueOf(0.9));
 	        cartDetail.setCartId(4);
 	        cartDetail.setProductId(productId);
-	        cartDetail.setQuantity(quantity);
+//	        cartDetail.setQuantity(quantity);
 	        cartDetail.setUnitPrice(product.getProductPrice());
 	        cartDetail.setTotalPrice(BigDecimal.valueOf(100));
 	        cartDetails.add(cartDetail);
@@ -75,7 +65,7 @@ public class CartController {
 //		            cart.setUpdateDate(currentDate);
 //		            carDetailService.saveOrUpdate(cartDetail);
 	        }
-		return "redirect:/show-products";
+		return "redirect:/show-cartDetail";
 	}
 	
 	@GetMapping("/show-cartDetail")

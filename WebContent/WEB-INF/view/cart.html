@@ -11,37 +11,31 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h1>商品</h1>
+			<h1>購物車</h1>
 		</div>
 		
 		<div class="row">
 			<table class="table table-hover" th:if="${!products.empty}">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">產品編號</th>
+						<th scope="col">圖片</th>
 						<th scope="col">品牌</th>
 						<th scope="col">產品名稱</th>
-						<th scope="col">圖片</th>
-						<th scope="col">產品資訊</th>
 						<th scope="col">價錢</th>
 						<th scope="col">數量</th>
-						<th scope="col">加入購物車</th>
+						<th scope="col">總金額</th>
 						<th scope="col">編輯</th>
 						<th scope="col">刪除</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="product : ${products}">
-						<td th:text="${productStat.count}" ></td>					
-						<td th:text="${product.productId}"></td>
+						<td th:text="${product.productImage}"></td>
 						<td th:text="${product.brand}" ></td>
 						<td th:text="${product.name}"></td>
-						<td th:text="${product.productImage}"></td>
-						<td th:text="${product.productDescription}"></td>
-						<td th:text="${product.productPrice}"></td>
-						<td><input type="number" class="form-control" step="any"  min="0" value="1"></td>
-						<td><a class="btn btn-outline-success" type="submit" th:href="@{/add-to-cart/} + ${product.productId}">加入購物車</a></td>
+						<td th:text="${cartDetail.unitprice}"></td>
+						<td th:text="${cartDetail.quantity}"></td>
+						<td th:text="${cartDetail.totalPrice}"></td>
 						<td><a class="btn btn-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
 						<td><a class="btn btn-danger" 
 							   th:data-confirm-delete="是否刪除商品？"

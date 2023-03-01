@@ -1,18 +1,29 @@
 package main.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import main.model.CartDetail;
+import main.service.CartDetailService;
+
+@Controller
 public class CarDetailController {
 
-	//	
-//	@GetMapping("/showCartDetails/{productId}")
-//	public String showCartDetails(@PathVariable long productId, Model model) {
-//		Tour tour = productService.getById(productId);
-//		if(tour != null) {
-//			tourService.addTourDetailsIfNotExists(tour);
-//			model.addAttribute("tour", tour);
-//			return "tour-details";
-//		}
-//		return "redirect:/showOffer";
+    @Autowired
+    private CartDetailService cartDetailService;
+
+    @PostMapping("/process-cartdetail-form")
+    public String showCartDetailData(@Valid @ModelAttribute CartDetail cartDetail, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "cart";
+        }
+        cartDetailService.saveOrUpdate(cartDetail);
+        return "redirect:show-cartDetail";
+    }
 }

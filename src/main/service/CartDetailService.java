@@ -2,8 +2,11 @@ package main.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import main.model.CartDetail;
 
+@Service
 public interface CartDetailService {
 
 	public List<CartDetail> getAll();
