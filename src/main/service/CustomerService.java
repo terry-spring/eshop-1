@@ -15,7 +15,7 @@ public interface CustomerService {
 	
 	public void delete(long customerId);
 
-	public void addUserToCustomer(long customerId, String login);
+	public void addUserToCustomer(long customerId, long userId);
 
 	
 }

@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="zh-Hant"
-<<<<<<< HEAD
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
+<html 	lang="zh-Hant"
+		xmlns="http://www.w3.org/1999/xhtml"
+	  	xmlns:th="http://www.thymeleaf.org">
+	<head>
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	    <meta name="description" content="" />
         <meta name="author" content="" /> 
-=======
-      xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
-
-    <head>
+	<head>
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="author" content="" />
->>>>>>> origin/richard
-        <title>workshop1</title>
+	<title>workshop1</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="messages_zh_TW.min.js"></script>
@@ -35,25 +30,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
-                        <a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">ShoopingCart</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/order}">Order</a></li>
-                    </ul>
-=======
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" href="#projects">ShoopingCart</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" th:href="@{/order}">Order</a></li>
                         <li class="nav-item"><a sec:authorize="isAnonymous()"class="nav-link" th:href="@{/login}">登入</a></li>
                         <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" th:href="@{/logout}">登出</a></li>
-                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
+                        <li class="nav-item"><a sec:authorize="hasRole('EMPLOYEE')" class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
                         <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
-				 </ul>
->>>>>>> origin/richard
+				 	</ul>
                 </div>
             </div>
         </nav>
-        <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
@@ -65,7 +51,6 @@
                 </div>
             </div>
         </header>
-        <!-- About-->
        <section class="about-section text-center" id="about">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -81,10 +66,8 @@
                 <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
         </section> -->
-        <!-- Projects-->
         <section class="projects-section bg-light" id="projects">
             <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
@@ -109,7 +92,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
                     <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">

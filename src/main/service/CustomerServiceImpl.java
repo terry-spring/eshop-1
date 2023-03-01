@@ -1,5 +1,6 @@
 package main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -43,12 +44,15 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void addUserToCustomer(long customerId, String login) {
+	public void addUserToCustomer(long customerId, long userId) {
 		Customer customer =getById(customerId);
-		if(customer.getUser() !=null) {
-			User user = userRepository.findByLogin(login);
-			customer.setUser(user);
-			customerRepository.save(customer);
+		if(customer.getUsers() ==null) {
+			customer.setUsers(new ArrayList<>());
+		}
+		User user = userRepository.getOne(userId);
+		if(user !=null) {	
+			customer.getUsers().add(user);
+			saveOrUpdate(customer);
 		}
 	}
 	

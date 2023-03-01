@@ -1,6 +1,6 @@
 package main.controller;
 
-import java.security.Principal;
+//import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -67,9 +67,9 @@ public class CustomerController {
 		return "redirect:/show-customer";
 	}
 	
-	@GetMapping("/add-user-to-customer/{customerId}")
-	public String addUserToCustomer(@PathVariable long customerId, Principal principal) {
-		customerService.addUserToCustomer(customerId, principal.getName());
+	@GetMapping("/add-user-to-customer/{customerId}/{userId}")
+	public String addUserToCustomer(@PathVariable long customerId, @PathVariable long userId) {
+		customerService.addUserToCustomer(customerId, userId);
 		return "redirect:/show-customer";
 	}
 }
