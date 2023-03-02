@@ -20,17 +20,24 @@ import main.service.CustomerService;
 
 
 
+
 @Controller
 public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
 
+	
+	/**新增客戶
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/add-customer")
 	public String showcForm(Model model) {
 		model.addAttribute("customer", new Customer());
 		return "customer-form";
 	}
+	
 	
 	@PostMapping("/process-customer-form")
 	public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
@@ -41,6 +48,11 @@ public class CustomerController {
 		return "redirect:show-customer";
 	}
 	
+
+	/**客戶清單
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/show-customer")
 	public String getCustomers(Model model) {
 		List<Customer> customers = customerService.findAll();
@@ -48,6 +60,11 @@ public class CustomerController {
 		return "customers";
 	}
 	
+
+	/**刪除客戶資料
+	 * @param customerId
+	 * @return
+	 */
 	@GetMapping("/delete-customer/{customerId}")
 	public String deleteCustomer(@PathVariable("customerId") long customerId) {
 		Customer customer =  customerService.getById(customerId);
@@ -57,6 +74,11 @@ public class CustomerController {
 		return "redirect:/show-customer";
 	}
 	
+	/**修改客戶資料
+	 * @param customerId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/edit-customer/{customerId}")
 	public String editCustomer(@PathVariable("customerId") long customerId, Model model) {
 		Customer customer = customerService.getById(customerId);
@@ -67,9 +89,4 @@ public class CustomerController {
 		return "redirect:/show-customer";
 	}
 	
-	@GetMapping("/add-user-to-customer/{customerId}/{userId}")
-	public String addUserToCustomer(@PathVariable long customerId, @PathVariable long userId) {
-		customerService.addUserToCustomer(customerId, userId);
-		return "redirect:/show-customer";
-	}
 }

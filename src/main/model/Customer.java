@@ -14,10 +14,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -41,6 +45,9 @@ public class Customer {
 		北部,中部,南部,東部,離島
 	}
 	
+	/**建構Customer
+	 * 
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id")
@@ -66,19 +73,15 @@ public class Customer {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_userId")
-	private User user;
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	@Column(name = "CREATE_TIME",length = 7)
+	private Date createTime;
 	
-	private long userId;
-	
-	@ManyToMany
-	@JoinTable(name = "customer2user",
-			    joinColumns = @JoinColumn(name = "customer_customerId"),
-			    inverseJoinColumns = @JoinColumn(name = "user_userId"))
-	private List<User> users;
-	
-	
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	@Column(name = "UPDATE_TIME",length = 7)
+	private Date updateTime;
     
 	public long getCustomerId() {
 		return customerId;
@@ -132,32 +135,22 @@ public class Customer {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	
+	
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public User getUser() {
-		return user;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
-
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}	
 }
