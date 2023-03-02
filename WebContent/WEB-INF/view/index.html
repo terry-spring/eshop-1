@@ -29,13 +29,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
-                        <a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">ShoopingCart</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/order}">Order</a></li>
-                    </ul>
+                     <li class="nav-item"><a sec:authorize="isAnonymous()"class="nav-link" th:href="@{/login}">登入</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" th:href="@{/logout}">登出</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
+                         <li class="nav-item"><a class="nav-link" href="#projects">ShoopingCart</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/order}">訂單</a></li>
+				 </ul>
                 </div>
             </div>
         </nav>

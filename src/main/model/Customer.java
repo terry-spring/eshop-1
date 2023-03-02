@@ -1,10 +1,13 @@
 package main.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -40,6 +43,12 @@ public class Customer {
 	@Pattern(regexp = "[0-9]{10}",message = "{請輸入10碼行動電話號碼}")
 	@Column(name = "phone_number")
 	private String phoneNumber;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_userId")
+	private User user;
+	
+	private long userId;
     
 	public long getCustomerId() {
 		return customerId;
