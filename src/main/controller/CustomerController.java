@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import main.model.Customer;
 import main.service.CustomerService;
@@ -21,13 +22,20 @@ import main.service.CustomerService;
 
 
 
+/**建構顧客維護功能
+ * @author richard
+ *
+ */
 @Controller
 public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
 
-	
+	@RequestMapping("/customer-home")
+	public String showCustomerPage() {
+		return "customer-home";
+	}
 	/**新增客戶
 	 * @param model
 	 * @return
@@ -39,17 +47,21 @@ public class CustomerController {
 	}
 	
 	
+	/**填寫客戶表單
+	 * @param customer
+	 * @param bindingResult
+	 * @return
+	 */
 	@PostMapping("/process-customer-form")
 	public String showCustomerData(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "customer-form";
 		}
 		customerService.saveOrUpdate(customer);
-		return "redirect:show-customer";
+		return "redirect:/show-customer";
 	}
 	
-
-	/**客戶清單
+	/**view客戶資料清單
 	 * @param model
 	 * @return
 	 */
@@ -60,7 +72,6 @@ public class CustomerController {
 		return "customers";
 	}
 	
-
 	/**刪除客戶資料
 	 * @param customerId
 	 * @return

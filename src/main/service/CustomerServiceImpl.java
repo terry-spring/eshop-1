@@ -48,4 +48,13 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.deleteById(customerId);
 	}
 
+	@Override
+	public Customer getByUserId(long userId) {
+		List<Customer>customers =customerRepository.getByUserId(userId);
+		if(!customers.isEmpty()) {
+			return customers.get(0);
+		}
+		return null;
+	}
+
 }

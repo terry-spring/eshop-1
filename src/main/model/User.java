@@ -20,11 +20,12 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long customerId;
+	@Column(name = "userId")
+	private long userId;
 	
 	private String login;
 	
-	@Column(length = 68)
+	@Column
 	private String password;
 	
 	@Transient
@@ -45,15 +46,6 @@ public class User {
 
 	
 
-	public long getCustomerId() {
-		return customerId;
-	}
-
-
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-	}
 
 
 
@@ -90,6 +82,18 @@ public class User {
 //	public void setCustomers(List<Customer> customers) {
 //		this.customers = customers;
 //	}
+
+
+
+	public long getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 
 
