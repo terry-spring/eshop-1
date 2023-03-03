@@ -87,12 +87,12 @@ public class Customer {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	@Column(name = "CREATE_TIME",length = 7)
+	@Column(name = "create_time_")
 	private Date createTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
-	@Column(name = "UPDATE_TIME",length = 7)
+	@Column(name = "update_time")
 	private Date updateTime;
 
     
@@ -144,12 +144,15 @@ public class Customer {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-
+	
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	
-	
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
