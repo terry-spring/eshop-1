@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public Cart getByCustomerId(long customerId) {
-		return cartRepository.getOne(customerId);
+		return cartRepository.findById(customerId).orElse(null);
 	}
 
 	@Override

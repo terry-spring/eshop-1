@@ -1,5 +1,6 @@
 package main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import main.model.Cart;
 import main.model.CartDetail;
 import main.repository.CartDetailRepository;
 
@@ -23,17 +25,18 @@ public class CartDetailServiceImpl implements CartDetailService{
 	}
 
 	@Override
-	public void delete(long cartid) {
-		cartDetailRepository.deleteById(cartid);
+	public void delete(long cartId) {
+		cartDetailRepository.deleteById(cartId);
 	}
 
 	@Override
-	public CartDetail getById(long cartid) {
-		return cartDetailRepository.getOne(cartid);
+	public CartDetail getById(long cartId) {
+		return cartDetailRepository.getOne(cartId);
 	}
 
 	@Override
 	public void saveOrUpdate(CartDetail cartDetail) {
 		cartDetailRepository.save(cartDetail);
 	}
+	
 }

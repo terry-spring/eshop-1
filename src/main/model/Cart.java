@@ -12,8 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Proxy;
+
 @Entity
 @Table(name = "cart")
+@Proxy(lazy=false)
 public class Cart {
 	
 	@Id
@@ -25,6 +30,7 @@ public class Cart {
 	private long customerId;
 
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+	@NotFound(action=NotFoundAction.IGNORE)
 	private List<CartDetail> cartDetail;
 	
 	public long getCartId() {

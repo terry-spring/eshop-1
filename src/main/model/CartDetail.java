@@ -4,15 +4,22 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name = "cart_detail")
+@Proxy(lazy=false)
 public class CartDetail {
 	
 	@Column(name = "cart_id")
@@ -31,6 +38,7 @@ public class CartDetail {
 	
 	@ManyToOne
 	@JoinColumn(name="cart_cart_id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	private Cart cart;
 	
 	@Column(name = "unit_price")

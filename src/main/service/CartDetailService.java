@@ -11,9 +11,10 @@ public interface CartDetailService {
 
 	public List<CartDetail> getAll();
 
-	public CartDetail getById(long cartid);
+	public CartDetail getById(long cartId);
 	
 	public void saveOrUpdate(CartDetail cartDetail);
 	
-	public void delete(long cartid);
+	public void delete(long cardId);
+	
 }

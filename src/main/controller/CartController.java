@@ -4,14 +4,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import main.model.Cart;
 import main.model.CartDetail;
+import main.model.CartForm;
 import main.model.Product;
 import main.service.CartDetailService;
 import main.service.CartService;
@@ -37,13 +43,16 @@ public class CartController {
 	        Cart cart = cartService.getByCustomerId(customerId);
 	        List<CartDetail> cartDetails = new ArrayList<>();
 	        CartDetail cartDetail = new CartDetail();
-//		        Date currentDate = new Date();
-	        int quantity = 2;
+	        
+//		    Date currentDate = new Date();
 //	        int totalPrice = quantity * BigDecimal.valueOf(100);
+	        
+	        int quantity = 2;
 	        cartDetail.setDiscount(BigDecimal.valueOf(0.9));
-	        cartDetail.setCartId(4);
+	        //cartDetail.setCartId(4);
+	        //cartDetail.setCartDetailId(3);
 	        cartDetail.setProductId(productId);
-//	        cartDetail.setQuantity(quantity);
+	        cartDetail.setQuantity(quantity);
 	        cartDetail.setUnitPrice(product.getProductPrice());
 	        cartDetail.setTotalPrice(BigDecimal.valueOf(100));
 	        cartDetails.add(cartDetail);
@@ -63,12 +72,12 @@ public class CartController {
 	                }
 	            }
 //		            cart.setUpdateDate(currentDate);
-//		            carDetailService.saveOrUpdate(cartDetail);
+		        cartDetailService.saveOrUpdate(cartDetail);
 	        }
-		return "redirect:/show-cartDetail";
+		return "redirect:/show-cartdetail";
 	}
 	
-	@GetMapping("/show-cartDetail")
+	@GetMapping("/show-cartdetail")
 	public String getCart(Model model) {
 		List<Product> products = productService.getAll();
 		List<CartDetail> cartDetail= cartDetailService.getAll();
@@ -76,4 +85,14 @@ public class CartController {
 		model.addAttribute("cartDetail", cartDetail);
 		return "cart";
 	}
+
+    @PostMapping("/cart-form")
+    public String CartForm(@Valid @ModelAttribute CartForm cartForm, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "cart";
+        }
+        //cartDetailService.saveOrUpdate(cartDetail);
+        return "redirect:show-cartdetail";
+    }  
+    
 }
