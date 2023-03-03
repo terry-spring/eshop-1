@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public AccessDeniedHandler accessDeniedHandler() {
-		return new TourAgencyAccessDeniedHandler();
+		return new EshopAccessDeniedHandler();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/**", "/login", "/process-order-form")
 				.permitAll()
-			.antMatchers("/addtour")
+			.antMatchers("/addtour","/add-customer")
 				.hasAnyRole("ADMIN", "EMPLOYEE")
 			.and()
 				.formLogin()

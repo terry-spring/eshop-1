@@ -32,16 +32,16 @@ public class User {
 	
 	private boolean enabled;
 	
-	@OneToOne(mappedBy = "user")
-	private Customer customer;
+//	@OneToOne(mappedBy = "user")
+//	private Customer customer;
 	
 	
-	@ManyToMany
-	@JoinTable(name = "customer2user",
-			   joinColumns = @JoinColumn(name = "user_userId"),
-			   inverseJoinColumns = @JoinColumn(name = "customer_customerId"))
+//	@ManyToMany
+//	@JoinTable(name = "customer2user",
+//			   joinColumns = @JoinColumn(name = "user_userId"),
+//			   inverseJoinColumns = @JoinColumn(name = "customer_customerId"))
 			   
-	private List<Customer> customers;
+//	private List<Customer> customers;
 
 	
 
@@ -69,27 +69,27 @@ public class User {
 
 
 
-	public Customer getCustomer() {
-		return customer;
-	}
+//	public Customer getCustomer() {
+//		return customer;
+//	}
+//
+//
+//
+//	public void setCustomer(Customer customer) {
+//		this.customer = customer;
+//	}
 
 
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-
-
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
+//	public List<Customer> getCustomers() {
+//		return customers;
+//	}
+//
+//
+//
+//	public void setCustomers(List<Customer> customers) {
+//		this.customers = customers;
+//	}
 
 
 

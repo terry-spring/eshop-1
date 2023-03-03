@@ -1,5 +1,7 @@
 package main.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,15 +12,17 @@ import org.springframework.stereotype.Service;
 import main.model.Customer;
 import main.repository.CustomerRepository;
 
+
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
 
 	@Override
-	public List<Customer> getAll() {
+	public List<Customer> findAll() {
 		return customerRepository.findAll();
 	}
 
@@ -29,6 +33,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void saveOrUpdate(Customer customer) {
+		if (customer.getCustomerId()!=0) {
+			customer.setUpdateTime(new Date());
+		} else {
+			customer.setCreateTime(new Date());
+			
+		}
+		
 		customerRepository.saveAndFlush(customer);
 	}
 
