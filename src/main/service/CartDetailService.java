@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import main.model.Cart;
 import main.model.CartDetail;
 
 @Service
@@ -17,4 +18,5 @@ public interface CartDetailService {
 	
 	public void delete(long cardId);
 	
+	public CartDetail getByCartId(long cartId);
 }

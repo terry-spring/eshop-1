@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	    <meta name="description" content="" />
         <meta name="author" content="" /> 
-        <title>workshop1</title>
+        <title>Eshop</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">WORKSHOP1</a>
+                <a class="navbar-brand" href="#page-top">Eshop</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -34,7 +34,15 @@
                         <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/show-cartdetail}">購物車</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/order}">訂單</a></li>
+                      <!--   <div class="dropdown">
+						   <li class="nav-item"><a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">產品</a></li>
+						    <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+						      <li><a class="dropdown-item" th:href="@{/show-products}">所有產品</a></li>
+						      <li><a class="dropdown-item" th:href="@{/safe-products}">產品維護</a></li>
+						    </ul>
+						</div>-->
+                        <li class="nav-item"><a class="nav-link" th:href="@{/show-products}">所有產品</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/safe-products}">產品維護</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +53,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
 <!--                         <h1 class="mx-auto my-0 text-uppercase" th:text="${tour.name}"></h1> -->
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+        <!--                 <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2> -->
                         <a class="btn btn-primary" th:href="@{/show-products/}">所有商品</a>
                     </div>
                 </div>

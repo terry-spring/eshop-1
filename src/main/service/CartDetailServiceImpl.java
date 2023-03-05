@@ -38,5 +38,10 @@ public class CartDetailServiceImpl implements CartDetailService{
 	public void saveOrUpdate(CartDetail cartDetail) {
 		cartDetailRepository.save(cartDetail);
 	}
+
+	@Override
+	public CartDetail getByCartId(long cartId) {
+		return cartDetailRepository.findById(cartId).orElse(null);
+	}
 	
 }

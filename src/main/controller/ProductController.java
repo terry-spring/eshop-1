@@ -48,6 +48,15 @@ public class ProductController {
 		List<CartDetail> cartDetail= cartDetailService.getAll();
 		model.addAttribute("products", products);
 		model.addAttribute("cartDetail", cartDetail);
+		return "product-detail";
+	}	
+	
+	@GetMapping("/safe-products")
+	public String safeProducts(Model model) {
+		List<Product> products = productService.getAll();
+		List<CartDetail> cartDetail= cartDetailService.getAll();
+		model.addAttribute("products", products);
+		model.addAttribute("cartDetail", cartDetail);
 		return "products";
 	}
 	

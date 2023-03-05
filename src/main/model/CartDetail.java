@@ -28,6 +28,10 @@ public class CartDetail {
 	@Column(name = "product_id")
 	private long productId;
 	
+	public long getProductId() {
+		return productId;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cart_detail_id")
@@ -36,7 +40,7 @@ public class CartDetail {
 	@Column(name = "quantity")
 	private int quantity;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="cart_cart_id")
 	@NotFound(action=NotFoundAction.IGNORE)
 	private Cart cart;
@@ -58,9 +62,6 @@ public class CartDetail {
 		this.cartId = cartId;
 	}
 
-	public long getProductId() {
-		return productId;
-	}
 
 	public void setProductId(long productId) {
 		this.productId = productId;
