@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h1>產品維護</h1>
+			<h1>所有產品</h1>
 		</div>
 		
 		<div class="row">
@@ -23,8 +23,7 @@
 						<th scope="col">產品名稱</th>
 						<th scope="col">圖片</th>
 						<th scope="col">價錢</th>
-						<th scope="col">編輯</th>
-						<th scope="col">刪除</th>
+						<th scope="col">加入購物車</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,11 +33,8 @@
 						<td th:text="${product.name}"></td>
 						<td th:text="${product.productImage}"></td>
 						<td th:text="${product.productPrice}"></td>
-						<td><a class="btn btn-outline-primary" th:href="@{/edit-product/} + ${product.productId}">編輯</a></td>
-						<td><a class="btn btn-outline-primary" 
-							   th:data-confirm-delete="是否刪除商品？"
-							   onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"
-							   th:href="@{/delete-product/} + ${product.productId}">刪除</a></td>
+						<!-- <td><input type="number" class="form-control" step="any"  min="0" value="1"></td>  -->
+						<td><a class="btn btn-outline-success" type="submit" th:href="@{/show-cartform/} + ${product.productId}">加入購物車</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -50,7 +46,6 @@
 		
 		<div class="d-grid gap-2 d-md-block">
 			<div class="row">
-				<a th:href="@{/add-product}" class="btn btn-outline-danger">新增產品</a>
 				<a th:href="@{/}" class="btn btn-outline-dark">返回</a>
 			</div>
 		</div>

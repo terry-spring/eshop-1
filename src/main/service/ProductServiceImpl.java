@@ -7,33 +7,33 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.dao.ProductDAO;
 import main.model.Product;
+import main.repository.ProductRepository;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService{
 
 	@Autowired
-	private ProductDAO prouctDao;
+	private ProductRepository prouctRepository;
 	
 	@Override
 	public List<Product> getAll() {
-		return prouctDao.getAll();
+		return prouctRepository.findAll();
 	}
 
 	@Override
 	public Product getById(long productId) {
-		return prouctDao.getById(productId);
+		return prouctRepository.findById(productId).orElse(null);
 	}
 
 	@Override
 	public void saveOrUpdate(Product product) {
-		prouctDao.saveOrUpdate(product);
+		prouctRepository.save(product);
 	}
 
 	@Override
 	public void delete(long productId) {
-		prouctDao.delete(productId);
+		prouctRepository.deleteById(productId);
 	}
 }

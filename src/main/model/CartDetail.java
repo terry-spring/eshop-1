@@ -4,15 +4,22 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name = "cart_detail")
+@Proxy(lazy=false)
 public class CartDetail {
 	
 	@Column(name = "cart_id")
@@ -21,6 +28,10 @@ public class CartDetail {
 	@Column(name = "product_id")
 	private long productId;
 	
+	public long getProductId() {
+		return productId;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cart_detail_id")
@@ -29,8 +40,9 @@ public class CartDetail {
 	@Column(name = "quantity")
 	private int quantity;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="cart_cart_id")
+	@NotFound(action=NotFoundAction.IGNORE)
 	private Cart cart;
 	
 	@Column(name = "unit_price")
@@ -50,9 +62,6 @@ public class CartDetail {
 		this.cartId = cartId;
 	}
 
-	public long getProductId() {
-		return productId;
-	}
 
 	public void setProductId(long productId) {
 		this.productId = productId;

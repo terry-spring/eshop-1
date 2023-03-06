@@ -12,17 +12,13 @@ import main.service.ProductService;
 
 @Controller
 public class HomeController {
+	
     @Autowired
     private ProductService productService;
   @RequestMapping("/")
 	public String getHome(Model model) {
-    	List<Product>products = productService.getAll();
+    	List<Product> products = productService.getAll();
     	model.addAttribute("products", products);
-
-		
-	        return "index";
-		
-		}
-	}
-	
-
+	    return "index";
+  }
+}
