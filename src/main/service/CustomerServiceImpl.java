@@ -48,10 +48,13 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.deleteById(customerId);
 	}
 
-//	@Override
-//	public void addUserToCustomer(long id, long userId) {
-//		 TODO Auto-generated method stub
-		
-//	}
+	@Override
+	public Customer getByUserId(long userId) {
+		List<Customer>customers =customerRepository.getByUserId(userId);
+		if(!customers.isEmpty()) {
+			return customers.get(0);
+		}
+		return null;
+	}
 
 }

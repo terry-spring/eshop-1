@@ -14,6 +14,8 @@ public interface CustomerService {
 	public void saveOrUpdate(Customer customer);
 	
 	public void delete(long customerId);
+	
+	public Customer getByUserId(long userId);
 
 //	public void addUserToCustomer(long customerId, long userId);
 
