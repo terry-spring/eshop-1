@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-
-
 <html 	lang="zh-Hant"
 		xmlns="http://www.w3.org/1999/xhtml"
 	  	xmlns:th="http://www.thymeleaf.org">
 	<head>
-=======
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  lang="zh-Hant"
-	  xmlns:th="http://www.thymeleaf.org">
-    <head>
->>>>>>> origin/yennn
+
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	    <meta name="description" content="" />
         <meta name="author" content="" /> 
-<<<<<<< HEAD
+
     <head>
     	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="author" content="" />
         <title>購物商城</title>
 
-=======
-        <title>Eshop</title>
->>>>>>> origin/yennn
+
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="messages_zh_TW.min.js"></script>
@@ -36,23 +26,28 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-<<<<<<< HEAD
-                <a class="navbar-brand" href="#page-top">快樂購物商城</a>
-=======
-                <a class="navbar-brand" href="#page-top">Eshop</a>
->>>>>>> origin/yennn
+               <a class="navbar-brand" href="#page-top">快樂購物商城</a>
+
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-
                      <li class="nav-item"><a sec:authorize="isAnonymous()"class="nav-link" th:href="@{/login}">登入</a></li>
                         <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" th:href="@{/logout}">登出</a></li>
                         <li class="nav-item"><a sec:authorize="hasRole('EMPLOYEE')" class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
                         <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>                       
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-cartdetail}">購物車</a></li>
+                      <!--   <div class="dropdown">
+						   <li class="nav-item"><a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">產品</a></li>
+						    <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+						      <li><a class="dropdown-item" th:href="@{/show-products}">所有產品</a></li>
+						      <li><a class="dropdown-item" th:href="@{/safe-products}">產品維護</a></li>
+						    </ul>
+						</div>-->
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-products}">所有產品</a></li>
+                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/safe-products}">產品維護</a></li>
                         <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
@@ -61,46 +56,26 @@
                             </ul>
                         </li>    
 				 </ul>
-
-
-				    </ul>
-=======
-                        <li class="nav-item"><a class="nav-link" th:href="@{/login}">登入</a></li>
-                        <a sec:authorize="!isAnonymous()" th:href="@{/logout}" class="btn btn-secondary float-right">登出</a>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-cartdetail}">購物車</a></li>
-                      <!--   <div class="dropdown">
-						   <li class="nav-item"><a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">產品</a></li>
-						    <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-						      <li><a class="dropdown-item" th:href="@{/show-products}">所有產品</a></li>
-						      <li><a class="dropdown-item" th:href="@{/safe-products}">產品維護</a></li>
-						    </ul>
-						</div>-->
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-products}">所有產品</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/safe-products}">產品維護</a></li>
-                    </ul>
->>>>>>> origin/yennn
-                </div>
+	                </div>
             </div>
         </nav>
         <header class="masthead">
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-<<<<<<< HEAD
+
                         <h1 class="mx-auto my-0 text-uppercase" ></h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-=======
+
 <!--                         <h1 class="mx-auto my-0 text-uppercase" th:text="${tour.name}"></h1> -->
         <!--                 <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2> -->
->>>>>>> origin/yennn
+
                         <a class="btn btn-primary" th:href="@{/show-products/}">所有商品</a>
                     </div>
                 </div>
             </div>
         </header>
-<<<<<<< HEAD
+
        <section class="about-section text-center" id="about">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -114,9 +89,9 @@
                 <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
         </section> -->
-=======
+
         <!-- Projects-->
->>>>>>> origin/yennn
+
         <section class="projects-section bg-light" id="projects">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
