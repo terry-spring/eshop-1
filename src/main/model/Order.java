@@ -12,10 +12,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
+    public enum Payment {
+        現金, 刷卡;
+    }
 
 
 
@@ -33,6 +41,8 @@ public class Order {
 	@Column(name = "customer_id")
 	private long customerId;
 
+	@NotNull(message = "{order.date.notnull}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "order_date")
 	private Date orderDate;
 
@@ -42,6 +52,29 @@ public class Order {
 	@Column(name = "total_price")
 	private BigDecimal totalPrice;
 	
+	@Column(name = "payment")
+    private Payment payment;
+	
+	@Min(value = 0, message = "{order.amount}")
+    @Column(name = "amount")
+    private BigDecimal amount = new BigDecimal("0");
+	
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}

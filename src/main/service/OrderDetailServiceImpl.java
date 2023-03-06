@@ -1,5 +1,7 @@
 package main.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +32,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	public void delete(long id) {
 		orderDetailRepository.deleteById(id);
 	}
+	 @Override
+	    public List<OrderDetail> getByOrderId(long orderId) {
+	        return orderDetailRepository.getByOrderId(orderId);
+	    }
 
 }

@@ -35,6 +35,7 @@ public class OrderController {
 	
 	@RequestMapping("/order")
 	public String getOrder() {
+		
 		return "orders";
 	}
 	
@@ -77,18 +78,18 @@ public class OrderController {
 	
 	
 
-	@GetMapping("/delete-order/{id}")
-	public String deleteOrder(@PathVariable long id) {
-		Order order = orderService.getById(id);
+	@GetMapping("/delete-order/{orderId}")
+	public String deleteOrder(@PathVariable long orderId) {
+		Order order = orderService.getById(orderId);
 		if(order != null) {
-			orderService.delete(id);
+			orderService.delete(orderId);
 		}
 		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/edit-order/{id}")
-	public String editOrder(@PathVariable long id, Model model) {
-		Order order = orderService.getById(id);
+	@GetMapping("/edit-order/{orderId}")
+	public String editOrder(@PathVariable long orderId, Model model) {
+		Order order = orderService.getById(orderId);
 		if(order != null) {
 			model.addAttribute("order", order);
 			return "order-form";
@@ -96,9 +97,9 @@ public class OrderController {
 		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/checkout/{id}")
-	public String checkout(@PathVariable long id) {
-		Cart cart = cartService.getById(id);
+	@GetMapping("/checkout/{cartId}")
+	public String checkout(@PathVariable long cartId) {
+		Cart cart = cartService.getById(cartId);
 		
 		if(cart != null) {
 			Order order = new Order();
@@ -126,7 +127,7 @@ public class OrderController {
 			order.setTotalPrice(total);
 			order.setOrderDetail(orderDetails);
 			orderService.saveOrUpdate(order);
-			cartService.delete(id);
+			cartService.delete(cartId);
 		}
 		return "checkout";
 	}

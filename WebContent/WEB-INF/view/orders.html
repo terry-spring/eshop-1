@@ -28,11 +28,10 @@
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">訂單日期</th>
-									<th scope="col">客戶編號</th>
+									<th scope="col">客戶Id</th>
 									<th scope="col">付款方式</th>
 									<th scope="col">總額</th>
 									<th scope="col">編輯內容</th>
-									<th scope="col">編輯詳細內容</th>
 									<th scope="col">刪除訂單</th>
 									<th scope="col">詳細內容</th>
 								</tr>
@@ -45,7 +44,6 @@
 									<td th:text="${order.payment}"></td>
 									<td th:text="${#strings.replace(#strings.replace(#numbers.formatCurrency(order.amount), '¤', '$'), '.00', '')}"></td>
 									<td><a class="btn btn-primary" th:href="@{/edit-order/} + ${order.orderId}">編輯</a></td>
-									<td><a class="btn btn-primary" th:href="@{/edit-order-details/} + ${order.orderId}">編輯</a></td>
 									<td><a class="btn btn-danger" th:href="@{/delete-order/} + ${order.orderId}">刪除</a></td>
 									<td><a class="btn btn-success" th:href="@{/show-order-details/} + ${order.orderId}">顯示</a></td>
 								</tr>
