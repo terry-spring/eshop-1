@@ -1,9 +1,6 @@
 package main.model;
 
-
 import java.util.Date;
-import java.util.List;
-
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,25 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
-
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-
 
 //**set customer table
- 
  
 @Entity
 @Table(name = "customer")
@@ -70,20 +59,16 @@ public class Customer {
 	
 	private String state;
 	
-	
 	@Column(name = "postal_code")
 	private String postalCode;
 	
 	@Pattern(regexp = "^09\\d{8}",message = "{請輸入10碼行動電話號碼}")
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_userId")
 	private User user;
-	
-	private long userId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
@@ -94,7 +79,6 @@ public class Customer {
 	@UpdateTimestamp
 	@Column(name = "update_time")
 	private Date updateTime;
-
     
 	public long getCustomerId() {
 		return customerId;
@@ -104,7 +88,6 @@ public class Customer {
 		this.customerId = customerId;
 	}
 	
-
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -160,7 +143,6 @@ public class Customer {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
 	
 	public Date getUpdateTime() {
 		return updateTime;

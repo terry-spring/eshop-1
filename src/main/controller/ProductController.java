@@ -13,20 +13,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import main.model.Cart;
+import main.model.CartDetail;
 import main.model.Product;
+import main.service.CartDetailService;
 import main.service.ProductService;
 
 @Controller
-//@RequestMapping("/product")
 public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CartDetailService cartDetailService;
 	
 	@GetMapping("/add-product")
 	public String showForm(Model model) {
 		model.addAttribute("product", new Product());
+		model.addAttribute("cartDetail", new CartDetail());
 		return "product-form";
 	}
 	
@@ -36,13 +39,24 @@ public class ProductController {
 			return "product-form";
 		}
 		productService.saveOrUpdate(product);
-		return "redirect:show-products";
+		return "redirect:/safe-products";
 	}
 	
 	@GetMapping("/show-products")
 	public String getProducts(Model model) {
 		List<Product> products = productService.getAll();
+		List<CartDetail> cartDetail= cartDetailService.getAll();
 		model.addAttribute("products", products);
+		model.addAttribute("cartDetail", cartDetail);
+		return "product-detail";
+	}	
+	
+	@GetMapping("/safe-products")
+	public String safeProducts(Model model) {
+		List<Product> products = productService.getAll();
+		List<CartDetail> cartDetail= cartDetailService.getAll();
+		model.addAttribute("products", products);
+		model.addAttribute("cartDetail", cartDetail);
 		return "products";
 	}
 	

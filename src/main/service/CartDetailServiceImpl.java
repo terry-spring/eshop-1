@@ -1,33 +1,47 @@
 package main.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.dao.CartDetailDAO;
+import main.model.Cart;
 import main.model.CartDetail;
+import main.repository.CartDetailRepository;
 
 @Service
 @Transactional
 public class CartDetailServiceImpl implements CartDetailService{
 
 	@Autowired
-	private CartDetailDAO cartDetailDAO;
-
+	private CartDetailRepository cartDetailRepository;
+	
 	@Override
-	public void delete(long cartid) {
-		cartDetailDAO.delete(cartid);
+	public List<CartDetail> getAll() {
+		return cartDetailRepository.findAll();
 	}
 
 	@Override
-	public CartDetail getById(long cartid) {
-		return cartDetailDAO.getById(cartid);
+	public void delete(long cartId) {
+		cartDetailRepository.deleteById(cartId);
+	}
+
+	@Override
+	public CartDetail getById(long cartId) {
+		return cartDetailRepository.getOne(cartId);
 	}
 
 	@Override
 	public void saveOrUpdate(CartDetail cartDetail) {
-		cartDetailDAO.saveOrUpdate(cartDetail);
+		cartDetailRepository.saveAndFlush(cartDetail);
 	}
 
+	@Override
+	public CartDetail getByCartId(long cartId) {
+		return cartDetailRepository.findById(cartId).orElse(null);
+	}
+	
 }
