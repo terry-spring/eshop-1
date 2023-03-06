@@ -39,7 +39,7 @@ public class ProductController {
 			return "product-form";
 		}
 		productService.saveOrUpdate(product);
-		return "redirect:show-products";
+		return "redirect:/safe-products";
 	}
 	
 	@GetMapping("/show-products")

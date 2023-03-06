@@ -36,7 +36,7 @@ public class CartDetailServiceImpl implements CartDetailService{
 
 	@Override
 	public void saveOrUpdate(CartDetail cartDetail) {
-		cartDetailRepository.save(cartDetail);
+		cartDetailRepository.saveAndFlush(cartDetail);
 	}
 
 	@Override

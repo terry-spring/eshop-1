@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +20,8 @@ public class CartForm {
 	private String productDescription;
 
 	private BigDecimal productPrice;
-	
+
+	@Min(value=0, message = "{cartForm.quantity.min}")
 	private int quantity;
 
 	public long getProductId() {

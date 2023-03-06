@@ -2,9 +2,7 @@ package main.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -35,61 +33,64 @@ public class CartController {
 	@Autowired
 	private CartDetailService cartDetailService;
 
-
-	@GetMapping("/add-to-cart/{productId}")
-	public String addToCart(@PathVariable long productId, Model model) {
-		
-		 long customerId = 1L;
-	        //商業邏輯
-	        Product product = productService.getById(productId);
-	        Cart cart = cartService.getByCustomerId(customerId);
-	        List<CartDetail> cartDetails = new ArrayList<>();
-	        CartDetail cartDetail = new CartDetail();
-	        
+//	@GetMapping("/add-to-cart/{productId}")
+//	public String addToCart(@PathVariable long productId, Model model) {
+//		
+//		 long customerId = 1L;
+//	        //商業邏輯
+//	        Product product = productService.getById(productId);
+//	        Cart cart = cartService.getByCustomerId(customerId);
+//	        List<CartDetail> cartDetails = new ArrayList<>();
+//	        CartDetail cartDetail = new CartDetail();
+//	        
 //		    Date currentDate = new Date();
 //	        int totalPrice = quantity * BigDecimal.valueOf(100);
-	        
-	        int quantity = 2;
-	        cartDetail.setDiscount(BigDecimal.valueOf(0.9));
-	        //cartDetail.setCartId(4);
-	        //cartDetail.setCartDetailId(3);
-	        cartDetail.setProductId(productId);
-	        cartDetail.setQuantity(quantity);
-	        cartDetail.setUnitPrice(product.getProductPrice());
-	        cartDetail.setTotalPrice(BigDecimal.valueOf(100));
-	        cartDetails.add(cartDetail);
-
-	        if (cart == null) {
-	            cart = new Cart();
-	            cart.setCartDetail(cartDetails);
-	            cart.setCustomerId(1);
+//	        
+//	        int quantity = 2;
+//	        cartDetail.setDiscount(BigDecimal.valueOf(0.9));
+//	        //cartDetail.setCartId(4);
+//	        //cartDetail.setCartDetailId(3);
+//	        cartDetail.setProductId(productId);
+//	        cartDetail.setQuantity(quantity);
+//	        cartDetail.setUnitPrice(product.getProductPrice());
+//	        cartDetail.setTotalPrice(BigDecimal.valueOf(100));
+//	        cartDetails.add(cartDetail);
+//
+//	        if (cart == null) {
+//	            cart = new Cart();
+//	            cart.setCartDetail(cartDetails);
+//	            cart.setCustomerId(1);
 //		            cart.setCrateDate(currentDate);
 //		            cart.setUpdateDate(currentDate);
-	            cartService.saveOrUpdate(cart);
-	        } else {
-	            for(CartDetail detail: cart.getCartDetail()) {
-	                if (productId == detail.getProductId()) {
-	                    cartDetail.setQuantity(quantity);
-	                    break;
-	                }
-	            }
+//	            cartService.saveOrUpdate(cart);
+//	        } else {
+//	            for(CartDetail detail: cart.getCartDetail()) {
+//	                if (productId == detail.getProductId()) {
+//	                    cartDetail.setQuantity(quantity);
+//	                    break;
+//	                }
+//	            }
 //		            cart.setUpdateDate(currentDate);
-		        cartDetailService.saveOrUpdate(cartDetail);
-	        }
-		return "redirect:/show-cartdetail";
-	}
+//		        cartDetailService.saveOrUpdate(cartDetail);
+//	        }
+//		return "redirect:/show-cartdetail";
+//	}
 	
 	@GetMapping("/show-cartdetail/{cartId}")
 	public String showCartDetail(@PathVariable long cartId,@ModelAttribute CartForm cartForm, Model model) {
 		
-		List<CartDetail> newsList = new ArrayList<>();
+//		List<CartDetail> newsList = new ArrayList<>();
 		CartDetail cartDetail = cartDetailService.getByCartId(cartId);
 		Product product = productService.getById(cartDetail.getProductId());
-		Map<String, Object> map = new HashMap();
-//		map.put("cartDetail", cartDetail);
-//		map.put("product", product);
+//		String cartDetailJson = new Json().toJson(cartDetail);
+//		Map<String, Object> productmap = new HashMap();
+//		Map<String, Object> cartDetailmap = new HashMap();
 		model.addAttribute("product",product);
 		model.addAttribute("cartdetail",cartDetail);
+//		productmap.put("product", product.getName());
+//		cartDetailmap.put("cartDetail", cartDetail.getQuantity());
+//		System.out.println(cartDetailmap);
+//		System.out.println(productmap);
 		return "cart";
 	}
 
@@ -111,7 +112,7 @@ public class CartController {
         cartDetail.setDiscount(BigDecimal.valueOf(0.9));
         cartDetail.setProductId(cartForm.getProductId());
 //        cartDetails.add(cartDetail);
-        long cardId = 0;
+        long cardId = 1;
         if (cart == null) {
         	cartDetails.add(cartDetail);
             cart = new Cart();
@@ -120,19 +121,18 @@ public class CartController {
 //	            cart.setCrateDate(currentDate);
 //	            cart.setUpdateDate(currentDate);
             cartService.saveOrUpdate(cart);
-            cardId = cart.getCartId();
+        	cartDetail.setCartId(cardId);
+	        cartDetailService.saveOrUpdate(cartDetail);
 //            return "redirect:show-cartdetail/{cardId}";
         } else {
-        	cartDetail.setCartId(cart.getCartId());
-        	cartDetails.add(cartDetail);
+        	CartDetail userCart = cartDetailService.getById(cart.getCartId());
+        	Product cartProduct = productService.getById(userCart.getCartId());
         	int cartFormQuantity = cartForm.getQuantity();
-            for (CartDetail detail : cart.getCartDetail()) {
-                if (product.getProductId() == detail.getProductId()) {
+                if (cartProduct.getProductId() == product.getProductId()) {
                     cartDetail.setQuantity(cartFormQuantity += cartDetail.getQuantity());
+        	        cartDetailService.saveOrUpdate(cartDetail);
                 }
-            }
 //	            cart.setUpdateDate(currentDate);
-	        cartDetailService.saveOrUpdate(cartDetail);
         }
         return "redirect:show-cartdetail/"+cardId;
     }  
