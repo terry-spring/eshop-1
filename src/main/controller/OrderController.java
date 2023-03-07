@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +98,7 @@ public class OrderController {
 		return "redirect:/show-order";
 	}
 	
-	@GetMapping("/checkout/{cartId}")
+	@GetMapping("/add-order/{cartId}")
 	public String checkout(@PathVariable long cartId) {
 		Cart cart = cartService.getById(cartId);
 		
@@ -129,7 +130,7 @@ public class OrderController {
 			orderService.saveOrUpdate(order);
 			cartService.delete(cartId);
 		}
-		return "checkout";
+		return "redirect:/show-order";
 	}
 		
 	

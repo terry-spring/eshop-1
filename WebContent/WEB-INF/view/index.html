@@ -76,19 +76,28 @@
             </div>
         </header>
 
-       <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                        </p>
-                    </div>
-                </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
-            </div>
-        </section> -->
+
+          <div th:each="product : ${products}">
+	       <section class="about-section text-center" id="about">
+	            <div class="container px-4 px-lg-5">
+	                <div class="row gx-4 gx-lg-5 justify-content-center">
+	                    <div class="col-lg-8">
+	                        <h2 class="text-white mb-4" th:text="${product.productId}"></h2>
+	                        <h2 class="text-white mb-4" th:text="${product.brand}"></h2>
+	                        <h2 class="text-white mb-4" th:text="${product.name}"></h2>
+	                        <h2 class="text-white mb-4" th:text="${product.productImage}"></h2>
+	                        <h2 class="text-white mb-4" th:text="${product.productDescription}"></h2>
+	                        <h2 class="text-white mb-4" th:text="${product.productPrice}"></h2>
+	                        <p class="text-white-50">
+	                         <td><a th:href="@{/show-cartform/} +${product.productId}">the preview page.</a></td>
+	                        </p>
+	                    </div>
+	                </div>
+	                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+	            </div>
+	        </section> -->
+        </div>
+       
 
         <!-- Projects-->
 
@@ -173,8 +182,8 @@
                     <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
                     <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
                 </div>
-            </div>
-        </section>
+                </div>
+        
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div></footer>
         <!-- Bootstrap core JS-->
