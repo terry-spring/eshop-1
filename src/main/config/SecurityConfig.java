@@ -37,8 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 
-	  
-
 		.inMemoryAuthentication()
 		.withUser("John").password(passwordEncoder().encode("admin")).roles("ADMIN", "EMPLOYEE")
 		.and()
@@ -82,5 +80,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//.exceptionHandling().accessDeniedPage("/forbidden");
 				.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 	}
-	
 }

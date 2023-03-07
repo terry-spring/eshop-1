@@ -2,7 +2,9 @@ package main.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -32,65 +34,55 @@ public class CartController {
 	private CartService cartService;	
 	@Autowired
 	private CartDetailService cartDetailService;
-
-//	@GetMapping("/add-to-cart/{productId}")
-//	public String addToCart(@PathVariable long productId, Model model) {
-//		
-//		 long customerId = 1L;
-//	        //商業邏輯
-//	        Product product = productService.getById(productId);
-//	        Cart cart = cartService.getByCustomerId(customerId);
-//	        List<CartDetail> cartDetails = new ArrayList<>();
-//	        CartDetail cartDetail = new CartDetail();
-//	        
-//		    Date currentDate = new Date();
-//	        int totalPrice = quantity * BigDecimal.valueOf(100);
-//	        
-//	        int quantity = 2;
-//	        cartDetail.setDiscount(BigDecimal.valueOf(0.9));
-//	        //cartDetail.setCartId(4);
-//	        //cartDetail.setCartDetailId(3);
-//	        cartDetail.setProductId(productId);
-//	        cartDetail.setQuantity(quantity);
-//	        cartDetail.setUnitPrice(product.getProductPrice());
-//	        cartDetail.setTotalPrice(BigDecimal.valueOf(100));
-//	        cartDetails.add(cartDetail);
-//
-//	        if (cart == null) {
-//	            cart = new Cart();
-//	            cart.setCartDetail(cartDetails);
-//	            cart.setCustomerId(1);
-//		            cart.setCrateDate(currentDate);
-//		            cart.setUpdateDate(currentDate);
-//	            cartService.saveOrUpdate(cart);
-//	        } else {
-//	            for(CartDetail detail: cart.getCartDetail()) {
-//	                if (productId == detail.getProductId()) {
-//	                    cartDetail.setQuantity(quantity);
-//	                    break;
-//	                }
-//	            }
-//		            cart.setUpdateDate(currentDate);
-//		        cartDetailService.saveOrUpdate(cartDetail);
-//	        }
-//		return "redirect:/show-cartdetail";
-//	}
 	
 	@GetMapping("/show-cartdetail/{cartId}")
 	public String showCartDetail(@PathVariable long cartId,@ModelAttribute CartForm cartForm, Model model) {
 		
 //		List<CartDetail> newsList = new ArrayList<>();
+		
 		CartDetail cartDetail = cartDetailService.getByCartId(cartId);
 		Product product = productService.getById(cartDetail.getProductId());
-//		String cartDetailJson = new Json().toJson(cartDetail);
+		
 //		Map<String, Object> productmap = new HashMap();
 //		Map<String, Object> cartDetailmap = new HashMap();
+		
 		model.addAttribute("product",product);
 		model.addAttribute("cartdetail",cartDetail);
+		
 //		productmap.put("product", product.getName());
 //		cartDetailmap.put("cartDetail", cartDetail.getQuantity());
 //		System.out.println(cartDetailmap);
-//		System.out.println(productmap);
+//		System.out.println(productmap); 
+		
+//		Cart cart = cartService.getById(cartId);
+//		ArrayList<Object> image = new ArrayList<>();
+//		ArrayList<Object> brand = new ArrayList<>();
+//		ArrayList<Object> name = new ArrayList<>();
+//		ArrayList<Object> unitprice = new ArrayList<>();
+//		ArrayList<Object> quantity = new ArrayList<>();
+//		ArrayList<Object> totalprice = new ArrayList<>();
+//		
+//		System.out.println(cart);
+//		System.out.println(cart.getCartDetail());
+//		
+//		for(CartDetail cartDetail : cartService.getById(cartId)) {
+//			Product product = productService.getById(cartDetail.getProductId());
+//			image.add(product.getProductImage());
+//			brand.add(product.getBrand());
+//			name.add(product.getName());
+//			unitprice.add(cartDetail.getUnitPrice());
+//			quantity.add(cartDetail.getQuantity());
+//			totalprice.add(cartDetail.getTotalPrice());
+//		}
+//		
+//        Map<String,ArrayList<Object>> shoppingcart = new HashMap<>();
+//        shoppingcart.put("image",image);
+//        shoppingcart.put("brand",brand);
+//        shoppingcart.put("name",name);
+//        shoppingcart.put("unitprice",unitprice);
+//        shoppingcart.put("quantity",quantity);
+//        shoppingcart.put("totalprice",totalprice);
+		
 		return "cart";
 	}
 
@@ -118,22 +110,28 @@ public class CartController {
             cart = new Cart();
             cart.setCartDetail(cartDetails);
             cart.setCustomerId(1);
-//	            cart.setCrateDate(currentDate);
-//	            cart.setUpdateDate(currentDate);
+//            cart.setCrateDate(currentDate);
+//            cart.setUpdateDate(currentDate);
             cartService.saveOrUpdate(cart);
         	cartDetail.setCartId(cardId);
 	        cartDetailService.saveOrUpdate(cartDetail);
 //            return "redirect:show-cartdetail/{cardId}";
         } else {
         	CartDetail userCart = cartDetailService.getById(cart.getCartId());
-        	Product cartProduct = productService.getById(userCart.getCartId());
         	int cartFormQuantity = cartForm.getQuantity();
-                if (cartProduct.getProductId() == product.getProductId()) {
-                    cartDetail.setQuantity(cartFormQuantity += cartDetail.getQuantity());
-        	        cartDetailService.saveOrUpdate(cartDetail);
+                if (userCart.getProductId() == product.getProductId()) {
+                	cartFormQuantity += userCart.getQuantity();
+                	userCart.setQuantity(cartFormQuantity);
+        	        cartDetailService.saveOrUpdate(userCart);
+                }else {
+                	long cartId = cart.getCartId();
+                	cartDetail.setCartId(cardId);
+//	            	cartDetails.add(cartDetail);
+//	                cart.setCartDetail(cartDetails);
+	    	        cartDetailService.saveOrUpdate(cartDetail);
+	//	            cart.setUpdateDate(currentDate);
                 }
-//	            cart.setUpdateDate(currentDate);
         }
-        return "redirect:show-cartdetail/"+cardId;
+        return "redirect:show-cartdetail/" + cardId;
     }  
 }
