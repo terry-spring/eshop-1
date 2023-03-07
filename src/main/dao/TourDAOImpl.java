@@ -2,6 +2,7 @@ package main.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,6 +40,12 @@ public class TourDAOImpl implements TourDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Tour tour = getById(id);
 		session.delete(tour);
+	}
+
+	@Override
+	public Tour getByIdWithComments(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from Tour t left join fetch t.comments where t.id = :id", Tour.class).setParameter("id", id).getSingleResult();
 	}
 
 }
