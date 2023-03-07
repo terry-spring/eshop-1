@@ -20,11 +20,12 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long customerId;
+	@Column(name = "userId")
+	private long userId;
 	
 	private String login;
 	
-	@Column(length = 68)
+	@Column
 	private String password;
 	
 	@Transient
@@ -32,28 +33,19 @@ public class User {
 	
 	private boolean enabled;
 	
-	@OneToOne(mappedBy = "user")
-	private Customer customer;
+//	@OneToOne(mappedBy = "user")
+//	private Customer customer;
 	
 	
-	@ManyToMany
-	@JoinTable(name = "customer2user",
-			   joinColumns = @JoinColumn(name = "user_userId"),
-			   inverseJoinColumns = @JoinColumn(name = "customer_customerId"))
+//	@ManyToMany
+//	@JoinTable(name = "customer2user",
+//			   joinColumns = @JoinColumn(name = "user_userId"),
+//			   inverseJoinColumns = @JoinColumn(name = "customer_customerId"))
 			   
-	private List<Customer> customers;
+//	private List<Customer> customers;
 
 	
 
-	public long getCustomerId() {
-		return customerId;
-	}
-
-
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-	}
 
 
 
@@ -69,26 +61,38 @@ public class User {
 
 
 
-	public Customer getCustomer() {
-		return customer;
+//	public Customer getCustomer() {
+//		return customer;
+//	}
+//
+//
+//
+//	public void setCustomer(Customer customer) {
+//		this.customer = customer;
+//	}
+
+
+
+//	public List<Customer> getCustomers() {
+//		return customers;
+//	}
+//
+//
+//
+//	public void setCustomers(List<Customer> customers) {
+//		this.customers = customers;
+//	}
+
+
+
+	public long getUserId() {
+		return userId;
 	}
 
 
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-
-
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 

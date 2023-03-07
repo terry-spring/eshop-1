@@ -30,48 +30,54 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public AccessDeniedHandler accessDeniedHandler() {
-		return new TourAgencyAccessDeniedHandler();
+		return new EshopAccessDeniedHandler();
 	}
 
 	@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-            .withUser("John").password(passwordEncoder().encode("admin")).roles("ADMIN", "EMPLOYEE")
-            .and()
-            .withUser("Eric").password(passwordEncoder().encode("employee")).roles("EMPLOYEE")
-            .and()
-            .withUser("Michael").password(passwordEncoder().encode("client")).roles("CLIENT");
-    }
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+
+		.inMemoryAuthentication()
+		.withUser("John").password(passwordEncoder().encode("admin")).roles("ADMIN", "EMPLOYEE")
+		.and()
+		.withUser("Eric").password(passwordEncoder().encode("employee")).roles("EMPLOYEE")
+		.and()
+		.withUser("Michael").password(passwordEncoder().encode("client")).roles("CLIENT");
+//		auth
+//			.jdbcAuthentication().dataSource(dataSource)
+//			.usersByUsernameQuery("select login, password, enabled from user where login=?")
+//			.authoritiesByUsernameQuery("select login, role from role where login=?");
+		}
+
 
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        //Unicode UTF-8
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+	protected void configure(HttpSecurity http) throws Exception {
+		//Unicode UTF-8
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter,CsrfFilter.class);
-
-        http.authorizeRequests()
-            .antMatchers("/**", "/login", "/process-order-form")
-                .permitAll()
-
-            .antMatchers("/addtour","/add-customer")
-                .hasAnyRole("ADMIN", "EMPLOYEE")
-            .and()
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/checkUserAccount")
-                .defaultSuccessUrl("/")
-                .permitAll()
-            .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .permitAll()
-            .and()
-                //.exceptionHandling().accessDeniedPage("/forbidden");
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-    }
+        
+		http.authorizeRequests()
+			.antMatchers("/**", "/login", "/process-order-form")
+				.permitAll()
+				
+			.antMatchers("/addtour","/add-customer")
+				.hasAnyRole("ADMIN", "EMPLOYEE")
+			.and()
+				.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/checkUserAccount")
+				.defaultSuccessUrl("/")
+				.permitAll()
+			.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/")
+				.invalidateHttpSession(true)
+				.permitAll()
+			.and()
+				//.exceptionHandling().accessDeniedPage("/forbidden");
+				.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
+	}
 }

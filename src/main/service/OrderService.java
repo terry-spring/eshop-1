@@ -13,6 +13,8 @@ public interface OrderService {
 	public void saveOrUpdate(Order order);
 	
 	public void delete(long id);
+
+	public Order getByIdWithComments(long id);
 	
 
 	

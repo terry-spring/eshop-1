@@ -7,7 +7,7 @@ import main.model.Customer;
 
 public interface CustomerService {
 
-	public List<Customer> getAll();
+	public List<Customer> findAll();
 	
 	public Customer getById(long cusetomerId);
 	
@@ -15,5 +15,9 @@ public interface CustomerService {
 	
 	public void delete(long customerId);
 	
-//	public void addUserToCustomer(long id ,long userId);
+	public Customer getByUserId(long userId);
+
+//	public void addUserToCustomer(long customerId, long userId);
+
+	
 }

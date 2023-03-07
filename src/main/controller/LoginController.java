@@ -3,6 +3,12 @@ package main.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
+/**建構登入功能
+ * @author richard
+ *
+ */
 @Controller
 public class LoginController {
 

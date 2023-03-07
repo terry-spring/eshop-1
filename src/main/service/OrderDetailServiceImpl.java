@@ -5,29 +5,30 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.dao.OrderDetailDAO;
+
 import main.model.OrderDetail;
+import main.repository.OrderDetailRepository;
 
 @Service
 @Transactional
 public class OrderDetailServiceImpl implements OrderDetailService {
 
 	@Autowired
-	private OrderDetailDAO orderDetailDAO;
+	private OrderDetailRepository orderDetailRepository;
 	
 	@Override
 	public OrderDetail getById(long id) {
-		return orderDetailDAO.getById(id);
+		return orderDetailRepository.getOne(id);
 	}
 
 	@Override
 	public void saveOrUpdate(OrderDetail orderDetails) {
-		orderDetailDAO.saveOrUpdate(orderDetails);
+		orderDetailRepository.save(orderDetails);
 	}
 
 	@Override
 	public void delete(long id) {
-		orderDetailDAO.delete(id);
+		orderDetailRepository.deleteById(id);
 	}
 
 }
