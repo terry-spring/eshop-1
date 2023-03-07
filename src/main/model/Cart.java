@@ -29,7 +29,7 @@ public class Cart {
 	@Column(name = "customer_id")
 	private long customerId;
 
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	@NotFound(action=NotFoundAction.IGNORE)
 	private List<CartDetail> cartDetail;
 	
