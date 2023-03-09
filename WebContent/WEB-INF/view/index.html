@@ -36,7 +36,7 @@
                         <li class="nav-item"><a sec:authorize="!isAnonymous()"class="nav-link" th:href="@{/logout}">登出</a></li>
                         <li class="nav-item"><a sec:authorize="hasRole('EMPLOYEE')" class="nav-link" th:href="@{/add-customer}">新增客戶</a></li>
                         <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-customer}">客戶列表</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/show-cartdetail}">購物車</a></li>
+                       <!--  <li class="nav-item"><a class="nav-link" th:href="@{/show-cartdetail}">購物車</a></li> -->
                       <!--   <div class="dropdown">
 						   <li class="nav-item"><a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">產品</a></li>
 						    <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
@@ -44,15 +44,21 @@
 						      <li><a class="dropdown-item" th:href="@{/safe-products}">產品維護</a></li>
 						    </ul>
 						</div>-->
-                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/show-products}">所有產品</a></li>
-                        <li class="nav-item"><a sec:authorize="!isAnonymous()" class="nav-link" th:href="@{/safe-products}">產品維護</a></li>
                         <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">訂單</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
                                 <li><a class="dropdown-item" th:href="@{/add-order}">新增訂單</a></li>
                                 <li><a class="dropdown-item" th:href="@{/show-order}">管理訂單</a></li>
                             </ul>
-                        </li>    
+                        </li> 
+                        
+                        <li sec:authorize="!isAnonymous()" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolioOrder" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">商品</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolioOrder">
+                                <li><a class="dropdown-item" th:href="@{/show-products}">所有產品</a></li>
+                                <li><a class="dropdown-item" th:href="@{/safe-products}">產品維護</a></li>
+                            </ul>
+                        </li> 
 				 </ul>		  
                 </div>
             </div>
