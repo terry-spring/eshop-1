@@ -110,12 +110,9 @@ public class CartController {
             cart = new Cart();
             cart.setCartDetail(cartDetails);
             cart.setCustomerId(1);
-//            cart.setCrateDate(currentDate);
-//            cart.setUpdateDate(currentDate);
             cartService.saveOrUpdate(cart);
         	cartDetail.setCartId(cardId);
 	        cartDetailService.saveOrUpdate(cartDetail);
-//            return "redirect:show-cartdetail/{cardId}";
         } else {
         	CartDetail userCart = cartDetailService.getById(cart.getCartId());
         	int cartFormQuantity = cartForm.getQuantity();
@@ -126,10 +123,7 @@ public class CartController {
                 }else {
                 	long cartId = cart.getCartId();
                 	cartDetail.setCartId(cardId);
-//	            	cartDetails.add(cartDetail);
-//	                cart.setCartDetail(cartDetails);
 	    	        cartDetailService.saveOrUpdate(cartDetail);
-	//	            cart.setUpdateDate(currentDate);
                 }
         }
         return "redirect:show-cartdetail/" + cardId;
