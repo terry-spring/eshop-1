@@ -23,6 +23,7 @@ import main.model.CartDetail;
 import main.model.Order;
 import main.model.OrderDetail;
 import main.service.CartService;
+import main.service.OrderDetailService;
 import main.service.OrderService;
 
 @Controller
@@ -30,6 +31,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
 	
 	@Autowired
 	private CartService cartService; 
@@ -132,6 +136,14 @@ public class OrderController {
 		}
 		return "redirect:/show-order";
 	}
-		
+	@GetMapping("/cancel-order/{orderId}")
+	public String cancelOrder(@PathVariable long orderId) {
+		Order order = orderService.getById(orderId);
+		if(order != null) {
+			order.setCancel(true);
+			orderService.saveOrUpdate(order);
+		}
+		return "redirect:/show-order";
+	}
 	
 }

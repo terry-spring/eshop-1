@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.model.OrderDetail;
 import main.service.OrderDetailService;
-import main.service.ProductService;
 
 @Controller
 public class OrderDetailController {
@@ -23,8 +22,6 @@ public class OrderDetailController {
 	@Autowired
 	private OrderDetailService orderDetailService;
 	
-	@Autowired
-	private ProductService productService;
 	
 	@GetMapping("/show-order-details/{orderId}")
 	public String showOrderDetail(@PathVariable long orderId, Model model) {
@@ -52,5 +49,13 @@ public class OrderDetailController {
 		orderDetailService.saveOrUpdate(orderDetail);
 		return "redirect:/show-order-detail/{orderId}";
 	}
-	
+	@GetMapping("/cancel-order-detail/{orderDetailId}/{orderId}")
+	public String cancelOrderDetail(@PathVariable long orderDetailId) {
+		OrderDetail orderDetail = orderDetailService.getById(orderDetailId);
+		if(orderDetail != null) {
+			orderDetail.setCancel(true);
+			orderDetailService.saveOrUpdate(orderDetail);
+		}
+		return "redirect:/show-order-detail/{orderId}";
+	}
 }

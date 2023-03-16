@@ -37,6 +37,17 @@ public class OrderDetail {
 	
 	@Column(name = "discount")
 	private BigDecimal discount;
+	
+	@Column(name = "cancel")
+	private boolean cancel = false;
+
+	public boolean isCancel() {
+		return cancel;
+	}
+
+	public void setCancel(boolean cancel) {
+		this.cancel = cancel;
+	}
 
 	public Order getOrder() {
 		return order;
